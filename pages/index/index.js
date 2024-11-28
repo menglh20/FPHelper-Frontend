@@ -1,49 +1,69 @@
 // index.js
-const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
-
 Page({
-  data: {
-    motto: 'Hello World',
-    userInfo: {
-      avatarUrl: defaultAvatarUrl,
-      nickName: '',
+    data: {
+        motto: 'Welcome to FPHelper',
+        userInfo: {
+            username: '',
+            password: '',
+        },
+        loginSuccess: false,
+        canIUseGetUserProfile: wx.canIUse('getUserProfile'),
+        canIUseNicknameComp: wx.canIUse('input.type.nickname'),
     },
-    hasUserInfo: false,
-    canIUseGetUserProfile: wx.canIUse('getUserProfile'),
-    canIUseNicknameComp: wx.canIUse('input.type.nickname'),
-  },
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onChooseAvatar(e) {
-    const { avatarUrl } = e.detail
-    const { nickName } = this.data.userInfo
-    this.setData({
-      "userInfo.avatarUrl": avatarUrl,
-      hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
-    })
-  },
-  onInputChange(e) {
-    const nickName = e.detail.value
-    const { avatarUrl } = this.data.userInfo
-    this.setData({
-      "userInfo.nickName": nickName,
-      hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
-    })
-  },
-  getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+    bindViewTap() {
+        wx.navigateTo({
+            url: '../logs/logs'
         })
-      }
-    })
-  },
+    },
+    async bindViewLogin() {
+        const username = this.data.userInfo.username
+        const password = this.data.userInfo.password
+        console.log(username)
+        console.log(password)
+        const res = await wx.cloud.callContainer({
+            "config": {
+              "env": "prod-4ggnzg0z43d1ab28"
+            },
+            "path": "/api/user/login",
+            "header": {
+              "X-WX-SERVICE": "django-5dw4",
+              "content-type": "application/json"
+            },
+            "method": "POST",
+            "data": {
+              "name": username,
+              "password": password
+            }
+          })
+        console.log(res)
+        const code = res.data.code
+        console.log(code)
+        if(code == 200) {
+            this.setData({
+                "loginSuccess": true
+            })
+        }
+    },
+    bindViewRegister() {
+
+    },
+    onChooseAvatar(e) {
+        const { avatarUrl } = e.detail
+        this.setData({
+            "userInfo.avatarUrl": avatarUrl,
+        })
+        console.log(avatarUrl)
+    },
+    onInputUsername(e) {
+        const username = e.detail.value
+        this.setData({
+            "userInfo.username": username,
+        })
+    },
+    onInputPassword(e) {
+        const password = e.detail.value
+        this.setData({
+            "userInfo.password": password,
+        })
+    }
 })

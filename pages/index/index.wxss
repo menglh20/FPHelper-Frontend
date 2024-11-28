@@ -26,7 +26,7 @@ page {
 }
 
 .usermotto {
-  margin-top: 200px;
+  margin-top: 50px;
 }
 
 .avatar-wrapper {
@@ -43,7 +43,7 @@ page {
   height: 56px;
 }
 
-.nickname-wrapper {
+.text-wrapper {
   display: flex;
   width: 100%;
   padding: 16px;
@@ -53,10 +53,31 @@ page {
   color: black;
 }
 
-.nickname-label {
+.text-label {
   width: 105px;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
 }
 
-.nickname-input {
+.text-input {
   flex: 1;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
 }
+
+.button-wrapper {
+    margin-top: 50rpx;
+    margin-bottom: 0rpx;
+}
+
+button{
+    margin-top: 50rpx;
+    margin-bottom: 50rpx;
+  }
+  .button-sp-area{
+    margin: 0 auto;
+    width: 60%;
+  }
+  .mini-btn{
+    margin-right: 10rpx;
+  }
