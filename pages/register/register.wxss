@@ -1,4 +1,4 @@
-/**index.wxss**/
+/* register.wxss */
 page {
   height: 100vh;
   display: flex;
