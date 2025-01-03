@@ -1,0 +1,27 @@
+/* pages/camera/camera.wxss */
+.button-wrapper {
+  margin-top: 50rpx;
+  margin-bottom: 0rpx;
+}
+
+button {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.button-sp-area {
+  margin: 0 auto;
+  width: 60%;
+}
+
+.mini-btn {
+  margin-right: 10rpx;
+}
+
+.hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+  width: 100%;
+}

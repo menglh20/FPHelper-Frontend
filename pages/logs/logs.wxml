@@ -1,6 +1,21 @@
 <!--logs.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <block wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
-    <view class="log-item">{{index + 1}}. {{log.date}}</view>
-  </block>
-</scroll-view>
+<view class="container">
+  <view class="header">
+    <button bindtap="fetchHistory">查看历史记录</button>
+  </view>
+  <view class="results">
+    <block wx:for="{{results}}" wx:key="id">
+      <view class="result-item">
+        <text class="result-text">结果: {{item.result}}</text>
+        <text class="time-text">时间: {{item.time}}</text>
+        <text class="detail-text">详情: {{item.detail}}</text>
+        <text class="comment-text">评论: {{item.comment}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view class="pagination">
+    <button wx:if="{{page > 1}}" bindtap="previousPage">上一页</button>
+    <button wx:if="{{total > page * 10}}" bindtap="nextPage">下一页</button>
+  </view>
+</view>

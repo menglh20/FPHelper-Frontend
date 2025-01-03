@@ -8,12 +8,8 @@
       <text class="userinfo-nickname">{{username}}</text>
     </view>
     <view class="button-wrapper">
-        <button bindtap="bindViewRecordVideo" type="primary">录制检测视频</button>
-        <button bindtap="bindViewUploadVideo" type="primary">上传检测视频</button>
-        <button bindtap="bindViewGetHistory" type="primary">查看历史数据</button>
+        <button bindtap="bindViewRecordVideo" type="primary">开始检测</button>
+        <button bindtap="bindViewGetHistory" type="primary">查看历史</button>
       </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
-    </view>
   </view>
 </scroll-view>

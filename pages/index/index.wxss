@@ -4,6 +4,7 @@ page {
   display: flex;
   flex-direction: column;
 }
+
 .scrollarea {
   flex: 1;
   overflow-y: hidden;
@@ -66,18 +67,20 @@ page {
 }
 
 .button-wrapper {
-    margin-top: 50rpx;
-    margin-bottom: 0rpx;
+  margin-top: 50rpx;
+  margin-bottom: 0rpx;
 }
 
-button{
-    margin-top: 50rpx;
-    margin-bottom: 50rpx;
-  }
-  .button-sp-area{
-    margin: 0 auto;
-    width: 60%;
-  }
-  .mini-btn{
-    margin-right: 10rpx;
-  }
+button {
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+}
+
+.button-sp-area {
+  margin: 0 auto;
+  width: 60%;
+}
+
+.mini-btn {
+  margin-right: 10rpx;
+}

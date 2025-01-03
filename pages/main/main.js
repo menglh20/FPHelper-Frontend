@@ -1,7 +1,6 @@
 // pages/main/main.js
 Page({
   data: {
-    motto: '欢迎使用FPHelper',
     username: ''
   },
   onLoad(options) {
@@ -12,12 +11,13 @@ Page({
     })
   },
   bindViewRecordVideo() {
-
-  },
-  bindViewUploadVideo() {
-
+    wx.navigateTo({
+      url: '../camera/camera',
+    })
   },
   bindViewGetHistory() {
-    
+    wx.navigateTo({
+      url: '../logs/logs',
+    })
   }
 })

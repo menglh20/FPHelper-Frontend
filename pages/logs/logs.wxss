@@ -1,16 +1,26 @@
-page {
-  height: 100vh;
+.container {
+  padding: 20px;
+}
+
+.header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
-.scrollarea {
-  flex: 1;
-  overflow-y: hidden;
+
+.results {
+  margin-bottom: 20px;
 }
-.log-item {
-  margin-top: 20rpx;
+
+.result-item {
+  margin-bottom: 15px;
+}
+
+.result-text, .time-text, .detail-text, .comment-text {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.pagination {
   text-align: center;
-}
-.log-item:last-child {
-  padding-bottom: env(safe-area-inset-bottom);
 }

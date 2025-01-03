@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/register/register",
-    "pages/main/main"
+    "pages/main/main",
+    "pages/camera/camera"
   ],
   "window": {
     "navigationBarTextStyle": "black",
