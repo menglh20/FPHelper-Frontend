@@ -1,21 +1,95 @@
-<!--logs.wxml-->
 <view class="container">
-  <view class="header">
-    <button bindtap="fetchHistory">查看历史记录</button>
-  </view>
+  <!-- 顶部按钮 -->
+  <!-- <view class="header">
+    <button class="fetch-button" bindtap="fetchHistory">查看历史记录</button>
+  </view> -->
+
+  <!-- 历史记录展示 -->
   <view class="results">
     <block wx:for="{{results}}" wx:key="id">
-      <view class="result-item">
-        <text class="result-text">结果: {{item.result}}</text>
-        <text class="time-text">时间: {{item.time}}</text>
-        <text class="detail-text">详情: {{item.detail}}</text>
-        <text class="comment-text">评论: {{item.comment}}</text>
+      <view class="card">
+        <!-- 结果和时间 -->
+        <view class="card-header">
+          <text class="result-score">分数: {{item.result}}</text>
+          <text class="result-time">时间: {{item.time}}</text>
+        </view>
+
+        <!-- 详情 -->
+        <view class="card-detail">
+          <!-- Rest Symmetry -->
+          <view class="detail-section">
+            <text class="detail-title">静态对称性:</text>
+            <view class="detail-item">
+              <text class="detail-key">眼:</text>
+              <text class="detail-value">{{item.detail['rest symmetry'].eye}}</text>
+            </view>
+            <view class="detail-item">
+              <text class="detail-key">鼻唇沟:</text>
+              <text class="detail-value">{{item.detail['rest symmetry'].cheek}}</text>
+            </view>
+            <view class="detail-item">
+              <text class="detail-key">嘴:</text>
+              <text class="detail-value">{{item.detail['rest symmetry'].mouth}}</text>
+            </view>
+          </view>
+
+          <!-- Voluntary Symmetry -->
+          <view class="detail-section">
+            <text class="detail-title">运动对称性:</text>
+            <view class="detail-item">
+              <text class="detail-key">抬额头:</text>
+              <text class="detail-value">{{item.detail['voluntary symmetry']['forehead wrinkle']}}</text>
+            </view>
+            <view class="detail-item">
+              <text class="detail-key">轻闭眼</text>
+              <text class="detail-value">{{item.detail['voluntary symmetry']['eye closure']}}</text>
+            </view>
+            <view class="detail-item">
+              <text class="detail-key">张嘴微笑:</text>
+              <text class="detail-value">{{item.detail['voluntary symmetry']['smile']}}</text>
+            </view>
+            <view class="detail-item">
+              <text class="detail-key">咧嘴:</text>
+              <text class="detail-value">{{item.detail['voluntary symmetry']['snarl']}}</text>
+            </view>
+            <view class="detail-item">
+              <text class="detail-key">唇吸吮:</text>
+              <text class="detail-value">{{item.detail['voluntary symmetry']['lip pucker']}}</text>
+            </view>
+          </view>
+
+          <!-- Synkinesis -->
+          <view class="detail-section">
+            <text class="detail-title">联动分级:</text>
+            <view class="detail-item">
+              <text class="detail-key">抬额头:</text>
+              <text class="detail-value">{{item.detail['synkinesis']['forehead wrinkle']}}</text>
+            </view>
+            <view class="detail-item">
+              <text class="detail-key">轻闭眼</text>
+              <text class="detail-value">{{item.detail['synkinesis']['eye closure']}}</text>
+            </view>
+            <view class="detail-item">
+              <text class="detail-key">张嘴微笑:</text>
+              <text class="detail-value">{{item.detail['synkinesis']['smile']}}</text>
+            </view>
+            <view class="detail-item">
+              <text class="detail-key">咧嘴:</text>
+              <text class="detail-value">{{item.detail['synkinesis']['snarl']}}</text>
+            </view>
+            <view class="detail-item">
+              <text class="detail-key">唇吸吮:</text>
+              <text class="detail-value">{{item.detail['synkinesis']['lip pucker']}}</text>
+            </view>
+          </view>
+        </view>
       </view>
     </block>
   </view>
 
+  <!-- 分页操作按钮 -->
   <view class="pagination">
-    <button wx:if="{{page > 1}}" bindtap="previousPage">上一页</button>
-    <button wx:if="{{total > page * 10}}" bindtap="nextPage">下一页</button>
+    <button wx:if="{{page > 1}}" bindtap="previousPage" class="page-button">上一页</button>
+    <button wx:if="{{total > page * 10}}" bindtap="nextPage" class="page-button">下一页</button>
   </view>
 </view>

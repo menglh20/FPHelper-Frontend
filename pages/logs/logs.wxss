@@ -1,26 +1,96 @@
+/* 顶层容器样式 */
 .container {
-  padding: 20px;
+  padding: 20rpx;
+  background-color: #f9f9f9;
 }
 
+/* 顶部按钮样式 */
 .header {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.fetch-button {
+  background-color: #007aff;
+  color: white;
+  padding: 15rpx 30rpx;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+}
+
+/* 卡片样式 */
+.card {
+  background-color: white;
+  border-radius: 15rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 卡片头部：结果+时间 */
+.card-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 30rpx;
 }
 
-.results {
-  margin-bottom: 20px;
+.result-score {
+  font-size: 50rpx;
+  font-weight: bold;
+  color: #007aff;
 }
 
-.result-item {
-  margin-bottom: 15px;
+.result-time {
+  font-size: 26rpx;
+  color: #888;
 }
 
-.result-text, .time-text, .detail-text, .comment-text {
-  display: block;
-  margin-bottom: 5px;
+/* 详情样式 */
+.card-detail {
+  margin-top: 10rpx;
 }
 
+.detail-section {
+  margin-bottom: 30rpx;
+}
+
+.detail-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+  color: #333;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8rpx 0;
+}
+
+.detail-key {
+  font-size: 26rpx;
+  color: #555;
+}
+
+.detail-value {
+  font-size: 26rpx;
+  color: #007aff;
+}
+
+/* 分页按钮样式 */
 .pagination {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.page-button {
+  background-color: #007aff;
+  color: white;
+  padding: 15rpx 40rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
 }

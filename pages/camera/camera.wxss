@@ -1,27 +1,52 @@
-/* pages/camera/camera.wxss */
-.button-wrapper {
-  margin-top: 50rpx;
-  margin-bottom: 0rpx;
+/* 父容器 */
+.camera-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* 占满整个屏幕 */
+  background-color: black;
 }
 
-button {
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
+/* 相机组件 */
+.camera {
+  width: 100%;
+  height: 100%;
 }
 
-.button-sp-area {
-  margin: 0 auto;
-  width: 60%;
-}
-
-.mini-btn {
-  margin-right: 10rpx;
-}
-
-.hint {
+/* 按钮覆盖层 */
+.button-overlay {
+  position: absolute;
+  bottom: 20px; /* 距离底部 20px */
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #aaa;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* 提示信息 */
+.hint {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* 按钮容器样式 */
+.button-container {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap; /* 自动换行 */
+  justify-content: space-between; /* 两列对齐 */
+  gap: 10px; /* 按钮间距 */
+  padding: 10px 20px; /* 内边距 */
+  box-sizing: border-box;
+}
+
+/* 每个按钮样式 */
+button {
+  flex: 0 0 48%; /* 每个按钮占宽度的 48%，两列布局 */
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
 }

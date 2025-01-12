@@ -27,7 +27,7 @@ page {
   }
   
   .usermotto {
-    margin-top: 50px;
+    margin-top: 20px;
   }
   
   .avatar-wrapper {

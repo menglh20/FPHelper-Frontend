@@ -27,6 +27,9 @@ page {
 
 .usermotto {
   margin-top: 50px;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* 防止多行文本时内容不居中 */
 }
 
 .avatar-wrapper {

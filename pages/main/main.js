@@ -2,7 +2,7 @@
 Page({
   data: {
     username: '',
-    motto: '由北京天坛医院和清华大学联合开发',
+    motto: '由北京天坛医院和清华大学联合开发\n目前检测数据仅供参考\n拍摄的照片不会用于其他任何用途',
   },
   onLoad(options) {
     const app = getApp()
