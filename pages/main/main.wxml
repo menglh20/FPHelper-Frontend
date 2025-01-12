@@ -10,6 +10,9 @@
     <view class="button-wrapper">
         <button bindtap="bindViewRecordVideo" type="primary">开始检测</button>
         <button bindtap="bindViewGetHistory" type="primary">查看历史</button>
-      </view>
+    </view>
+    <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view>
   </view>
 </scroll-view>

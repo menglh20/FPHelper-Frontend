@@ -1,7 +1,7 @@
 // index.js
 Page({
   data: {
-    motto: '欢迎使用FPHelper',
+    motto: '由北京天坛医院和清华大学联合开发',
     userInfo: {
       username: '',
       password: '',
@@ -73,6 +73,9 @@ Page({
         content: '未知错误',
       })
     }
+  },
+  bindViewBack() {
+    wx.navigateBack()
   },
   onInputUsername(e) {
     const username = e.detail.value

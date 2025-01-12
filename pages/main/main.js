@@ -1,7 +1,8 @@
 // pages/main/main.js
 Page({
   data: {
-    username: ''
+    username: '',
+    motto: '由北京天坛医院和清华大学联合开发',
   },
   onLoad(options) {
     const app = getApp()
