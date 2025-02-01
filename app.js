@@ -4,6 +4,7 @@ App({
     wx.cloud.init()
   },
   globalData: {
-    username: ''
+    username: '',
+    detailData: {}
   }
 })

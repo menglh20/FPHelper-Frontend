@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/register/register",
     "pages/main/main",
-    "pages/camera/camera"
+    "pages/camera/camera",
+    "pages/detail/detail"
   ],
   "window": {
     "navigationBarTextStyle": "black",

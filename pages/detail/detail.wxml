@@ -1,0 +1,97 @@
+<view class="card-detail">
+  <!-- 原始总分和输入总分展示 -->
+  <view class="total-score-section">
+    <view class="total-score-item">
+      <text>原先总分：</text>
+      <text class="total-score-value">{{originalTotalScore}}</text>
+    </view>
+    <view class="total-score-item">
+      <text>输入后的总分：</text>
+      <text class="total-score-value">{{calculatedTotalScore}}</text>
+    </view>
+  </view>
+
+  <!-- Rest Symmetry -->
+  <view class="detail-section">
+    <view class="section-header">静态对称性</view>
+    <view class="detail-item">
+      <text class="detail-key">眼</text>
+      <text class="detail-value">{{detail['rest symmetry'].eye}}</text>
+      <input class="detail-input" type="number" value="{{inputs['rest symmetry'].eye}}" placeholder="输入0-1" bindinput="onInputChange" data-group="rest symmetry" data-key="eye" />
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">鼻唇沟</text>
+      <text class="detail-value">{{detail['rest symmetry'].cheek}}</text>
+      <input class="detail-input" type="number" value="{{inputs['rest symmetry'].cheek}}" placeholder="输入0-2" bindinput="onInputChange" data-group="rest symmetry" data-key="cheek" />
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">嘴</text>
+      <text class="detail-value">{{detail['rest symmetry'].mouth}}</text>
+      <input class="detail-input" type="number" value="{{inputs['rest symmetry'].mouth}}" placeholder="输入0-1" bindinput="onInputChange" data-group="rest symmetry" data-key="mouth" />
+    </view>
+  </view>
+
+  <!-- Voluntary Symmetry -->
+  <view class="detail-section">
+    <view class="section-header">运动对称性</view>
+    <view class="detail-item">
+      <text class="detail-key">抬额头</text>
+      <text class="detail-value">{{detail['voluntary symmetry']['forehead wrinkle']}}</text>
+      <input class="detail-input" type="number" value="{{inputs['voluntary symmetry']['forehead wrinkle']}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="forehead wrinkle" />
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">轻闭眼</text>
+      <text class="detail-value">{{detail['voluntary symmetry']['eye closure']}}</text>
+      <input class="detail-input" type="number" value="{{inputs['voluntary symmetry']['eye closure']}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="eye closure" />
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">张嘴微笑</text>
+      <text class="detail-value">{{detail['voluntary symmetry'].smile}}</text>
+      <input class="detail-input" type="number" value="{{inputs['voluntary symmetry'].smile}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="smile" />
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">咧嘴</text>
+      <text class="detail-value">{{detail['voluntary symmetry'].snarl}}</text>
+      <input class="detail-input" type="number" value="{{inputs['voluntary symmetry'].snarl}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="snarl" />
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">唇吸吮</text>
+      <text class="detail-value">{{detail['voluntary symmetry']['lip pucker']}}</text>
+      <input class="detail-input" type="number" value="{{inputs['voluntary symmetry']['lip pucker']}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="lip pucker" />
+    </view>
+  </view>
+
+  <!-- Synkinesis -->
+  <view class="detail-section">
+    <view class="section-header">联动分级</view>
+    <view class="detail-item">
+      <text class="detail-key">抬额头</text>
+      <text class="detail-value">{{detail['synkinesis']['forehead wrinkle']}}</text>
+      <input class="detail-input" type="number" value="{{inputs['synkinesis']['forehead wrinkle']}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="forehead wrinkle" />
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">轻闭眼</text>
+      <text class="detail-value">{{detail['synkinesis']['eye closure']}}</text>
+      <input class="detail-input" type="number" value="{{inputs['synkinesis']['eye closure']}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="eye closure" />
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">张嘴微笑</text>
+      <text class="detail-value">{{detail['synkinesis'].smile}}</text>
+      <input class="detail-input" type="number" value="{{inputs['synkinesis'].smile}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="smile" />
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">咧嘴</text>
+      <text class="detail-value">{{detail['synkinesis'].snarl}}</text>
+      <input class="detail-input" type="number" value="{{inputs['synkinesis'].snarl}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="snarl" />
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">唇吸吮</text>
+      <text class="detail-value">{{detail['synkinesis']['lip pucker']}}</text>
+      <input class="detail-input" type="number" value="{{inputs['synkinesis']['lip pucker']}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="lip pucker" />
+    </view>
+  </view>
+</view>
+
+<view class="upload-section">
+  <button class="upload-button" bindtap="uploadComment">上传评论</button>
+</view>

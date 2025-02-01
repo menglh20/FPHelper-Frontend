@@ -144,5 +144,17 @@ Page({
       String(dateObj.getSeconds()).padStart(2, "0");
   
     return formattedDate;
+  },
+
+  viewDetail(e) {
+    const { id, detail, comment } = e.currentTarget.dataset;
+    
+    // 使用全局变量或存储
+    const app = getApp();
+    app.globalData.detailData = detail;
+
+    wx.navigateTo({
+        url: `../detail/detail?id=${id}&comment=${encodeURIComponent(comment)}`
+    });
   }
 });

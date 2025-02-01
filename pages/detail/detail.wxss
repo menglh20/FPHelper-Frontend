@@ -1,0 +1,109 @@
+/* 全局页面背景 */
+page {
+  background-color: #f8f9fa;
+}
+
+/* 区域定义 */
+.detail-section {
+  background-color: #ffffff;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 标题样式 */
+.section-header {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 12px;
+}
+
+/* 单条数据布局 */
+.detail-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+/* 文字样式 */
+.detail-key {
+  flex: 1;
+  font-size: 16px;
+  color: #666666;
+}
+
+.detail-value {
+  flex: 2;
+  font-size: 16px;
+  color: #333333;
+  text-align: center;
+}
+
+/* 输入框样式 */
+.detail-input {
+  flex: 1;
+  padding: 4px 8px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* 输入框焦点时的样式 */
+.detail-input:focus {
+  border-color: #007aff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 122, 255, 0.5);
+}
+
+/* 总分展示样式 */
+.total-score-section {
+  background-color: #ffffff;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-score-item {
+  flex: 1;
+  text-align: center;
+}
+
+.total-score-value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #007aff;
+}
+
+/* 上传按钮的样式 */
+.upload-section {
+  margin: 16px;
+  text-align: center;
+}
+
+.upload-button {
+  background-color: #007aff;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.upload-button:active {
+  background-color: #005bb5;
+}
