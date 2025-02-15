@@ -40,7 +40,7 @@ Page({
 
       if (res.data.code === 200) {
         const results = res.data.results.map(item => {
-          console.log("Raw detail data:", item.detail); // 打印 detail 的原始值
+          // console.log("Raw detail data:", item.detail); // 打印 detail 的原始值
 
           const parsedTime = this.addHoursToTime(item.time, 8)
 

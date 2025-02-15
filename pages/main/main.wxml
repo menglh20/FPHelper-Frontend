@@ -1,14 +1,16 @@
-<!--pages/main/main.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <button class="avatar-wrapper">
-        <image class="avatar" mode="aspectFill" src="../../resources/fphelper-logo.png"></image>
-      </button>
-      <text class="userinfo-nickname">{{username}}</text>
-    </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
-    </view>
+<!-- 用户信息部分 -->
+<view class="userinfo">
+  <view class="avatar-wrapper">
+    <image class="avatar" mode="aspectFill" src="../../resources/fphelper-logo.png"></image>
   </view>
-</scroll-view>
+  <text class="userinfo-nickname">{{username}}</text>
+</view>
+
+<!-- 折线图 -->
+<view class="chart-container">
+  <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ec}}"></ec-canvas>
+</view>
+
+<view class="usermotto">
+  <text class="user-motto">{{motto}}</text>
+</view>

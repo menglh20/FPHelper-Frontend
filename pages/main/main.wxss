@@ -26,10 +26,9 @@ page {
 }
 
 .usermotto {
-  margin-top: 50px;
   align-items: center;
   justify-content: center;
-  text-align: center; /* 防止多行文本时内容不居中 */
+  text-align: center;
 }
 
 .avatar-wrapper {
@@ -37,7 +36,7 @@ page {
   width: 100px !important;
   border-radius: 8px;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .avatar {
@@ -58,7 +57,6 @@ page {
 
 .text-label {
   width: 105px;
-  margin-top: 10rpx;
   margin-bottom: 10rpx;
 }
 
@@ -68,19 +66,9 @@ page {
   margin-bottom: 10rpx;
 }
 
-.button-wrapper {
-    margin-top: 100rpx;
-    margin-bottom: 0rpx;
-}
 
-button{
-    margin-top: 50rpx;
-    margin-bottom: 50rpx;
-  }
-  .button-sp-area{
-    margin: 0 auto;
-    width: 60%;
-  }
-  .mini-btn{
-    margin-right: 10rpx;
-  }
+.chart-container {
+  height: 400px;
+  width: 100%;
+  margin-top: 80rpx;
+}
