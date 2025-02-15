@@ -1,15 +1,26 @@
-<!--pages/detect/detect.wxml-->
 <scroll-view class="scrollarea" scroll-y type="list">
   <view class="container">
-    <view class="userinfo">
-      <button class="avatar-wrapper">
-        <image class="avatar" mode="aspectFill" src="../../resources/fphelper-logo.png"></image>
-      </button>
-      <text class="userinfo-nickname">{{username}}</text>
+    <!-- 页面标题 -->
+    <view class="header">
+      <text class="title">功能选择\n</text>
+      <text class="subtitle">请选择以下检测模式</text>
     </view>
+
+    <!-- 按钮部分 -->
     <view class="button-wrapper">
-        <button bindtap="bindViewTakePhoto" type="primary">拍照检测</button>
-        <button bindtap="bindViewRecordVideo" type="primary">视频检测</button>
+      <view class="button-item">
+        <button bindtap="bindViewTakePhoto" type="primary" class="action-button">
+          <image src="../../resources/photo-icon.png" class="button-icon" />
+          <text class="button-text">拍照检测</text>
+        </button>
+      </view>
+
+      <view class="button-item">
+        <button bindtap="bindViewRecordVideo" type="primary" class="action-button">
+          <image src="../../resources/video-icon.png" class="button-icon" />
+          <text class="button-text">视频检测</text>
+        </button>
+      </view>
     </view>
   </view>
 </scroll-view>
