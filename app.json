@@ -6,7 +6,9 @@
     "pages/main/main",
     "pages/camera/camera",
     "pages/detail/detail",
-    "pages/consult/consult"
+    "pages/consult/consult",
+    "pages/detect/detect",
+    "pages/recorder/recorder"
   ],
   "tabBar": {
     "color": "#000000",
@@ -21,7 +23,7 @@
         "selectedIconPath": "resources/mainpage-active.png"
       },
       {
-        "pagePath": "pages/camera/camera",
+        "pagePath": "pages/detect/detect",
         "text": "AI检测",
         "iconPath": "resources/detect.png",
         "selectedIconPath": "resources/detect-active.png"

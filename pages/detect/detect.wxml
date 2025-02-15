@@ -1,4 +1,4 @@
-<!--pages/main/main.wxml-->
+<!--pages/detect/detect.wxml-->
 <scroll-view class="scrollarea" scroll-y type="list">
   <view class="container">
     <view class="userinfo">
@@ -7,8 +7,9 @@
       </button>
       <text class="userinfo-nickname">{{username}}</text>
     </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+    <view class="button-wrapper">
+        <button bindtap="bindViewTakePhoto" type="primary">拍照检测</button>
+        <button bindtap="bindViewRecordVideo" type="primary">视频检测</button>
     </view>
   </view>
 </scroll-view>
