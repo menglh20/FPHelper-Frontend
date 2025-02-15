@@ -5,8 +5,41 @@
     "pages/register/register",
     "pages/main/main",
     "pages/camera/camera",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/consult/consult"
   ],
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#1AAD19",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "主页",
+        "iconPath": "resources/mainpage.png",
+        "selectedIconPath": "resources/mainpage-active.png"
+      },
+      {
+        "pagePath": "pages/camera/camera",
+        "text": "AI检测",
+        "iconPath": "resources/detect.png",
+        "selectedIconPath": "resources/detect-active.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "历史数据",
+        "iconPath": "resources/history.png",
+        "selectedIconPath": "resources/history-active.png"
+      },
+      {
+        "pagePath": "pages/consult/consult",
+        "text": "AI咨询",
+        "iconPath": "resources/consult.png",
+        "selectedIconPath": "resources/consult-active.png"
+      }
+    ]
+  },
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "FP Helper",
