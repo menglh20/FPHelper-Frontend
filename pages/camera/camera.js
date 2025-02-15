@@ -37,9 +37,45 @@ Page({
       'pic_smile': '请露齿微笑并注视摄像头',
       'pic_snarl': '请放大鼻孔并注视摄像头',
       'pic_lip_pucker': '请嘟嘴做出亲吻动作并注视摄像头'
+    },
+    audioPaths: {
+      'pic_at_rest': '/resources/at_rest.mp3',
+      'pic_forehead_wrinkle': '/resources/forehead_wrinkle.mp3',
+      'pic_eye_closure': '/resources/eye_closure.mp3',
+      'pic_smile': '/resources/smile.mp3',
+      'pic_snarl': '/resources/snarl.mp3',
+      'pic_lip_pucker': '/resources/lip_pucker.mp3',
+      'finish': 'resources/finish.mp3'
     }
   },
 
+  playAudio(state) {
+    const audioPath = this.data.audioPaths[state]; // 根据状态获取音频路径
+    if (!audioPath) {
+      console.error('音频路径不存在:', state);
+      return;
+    }
+
+    if (this.data.audioContext) {
+      this.data.audioContext.stop(); // 停止之前的音频
+    }
+
+    const innerAudioContext = wx.createInnerAudioContext(); // 创建音频实例
+    innerAudioContext.src = audioPath; // 设置音频路径
+    innerAudioContext.play(); // 开始播放
+    innerAudioContext.onPlay(() => {
+      console.log('音频播放中:', audioPath);
+    });
+    innerAudioContext.onError((err) => {
+      console.error('音频播放错误:', err);
+    });
+
+    this.setData({
+      audioContext: innerAudioContext // 保存音频实例
+    });
+  },
+
+  // 拍照并切换下一个状态
   bindViewTakePhoto() {
     const { state, photoPath, stateOrder, hints } = this.data;
 
@@ -82,6 +118,9 @@ Page({
                 state: nextState,
                 hint: hints[nextState]
               });
+
+              // 播放语音提示
+              this.playAudio(nextState);
             } else {
               wx.showToast({
                 title: '所有照片拍摄完成',
@@ -89,7 +128,8 @@ Page({
               });
               this.setData({
                 hint: "所有照片已经拍摄完成，请点击上传检测"
-              })
+              });
+              this.playAudio('finish')
             }
           },
           fail: (err) => {
@@ -111,6 +151,20 @@ Page({
     });
   },
 
+  onLoad() {
+    this.playAudio('pic_at_rest')
+  },
+
+  // 页面卸载时停止音频
+  onUnload() {
+    if (this.data.audioContext) {
+      this.data.audioContext.stop(); // 停止音频播放
+      this.setData({
+        audioContext: null // 清空音频实例
+      });
+    }
+  },
+
   async bindViewUpload() {
     const { photoPath } = this.data;
   
@@ -124,54 +178,58 @@ Page({
       return;
     }
   
+    // 显示上传中的提示
+    wx.showLoading({
+      title: '上传中...',
+      mask: true // 设置遮罩，防止用户操作
+    });
+  
     // 上传所有照片
     const app = getApp();
     const username = app.globalData.username;
     const suffix = username + Date.now();
-    const _this = this;
-  
-    // 初始化 fileID 对象
     const fileID = {};
   
-    // 上传任务并行处理
-    const uploadTasks = Object.entries(photoPath).map(([state, path]) => {
-      return wx.cloud.uploadFile({
-        cloudPath: `${state}_${suffix}.jpg`, // 云存储路径
-        filePath: path,
-        config: {
-          'env': 'prod-4ggnzg0z43d1ab28' // 云开发环境配置
-        }
-      }).then(res => {
-        console.log(`${state} 上传成功，文件 ID:`, res.fileID);
-        // 更新 fileID 对象
-        fileID[state] = res.fileID;
-        return { state, fileID: res.fileID }; // 返回成功结果
-      }).catch(err => {
-        console.error(`${state} 上传失败:`, err);
-        return { state, error: err }; // 返回失败结果
+    try {
+      // 上传任务并行处理
+      const uploadTasks = Object.entries(photoPath).map(([state, path]) => {
+        return wx.cloud.uploadFile({
+          cloudPath: `${state}_${suffix}.jpg`, // 云存储路径
+          filePath: path,
+          config: {
+            'env': 'prod-4ggnzg0z43d1ab28' // 云开发环境配置
+          }
+        }).then(res => {
+          console.log(`${state} 上传成功，文件 ID:`, res.fileID);
+          // 更新 fileID 对象
+          fileID[state] = res.fileID;
+          return { state, fileID: res.fileID }; // 返回成功结果
+        }).catch(err => {
+          console.error(`${state} 上传失败:`, err);
+          return { state, error: err }; // 返回失败结果
+        });
       });
-    });
   
-    // 等待所有上传任务完成
-    const results = await Promise.all(uploadTasks);
+      // 等待所有上传任务完成
+      const results = await Promise.all(uploadTasks);
   
-    // 检查是否有上传失败的照片
-    const failed = results.filter(item => item.error);
-    if (failed.length > 0) {
-      wx.showToast({
-        title: `部分上传失败: ${failed.map(f => f.state).join(', ')}`,
-        icon: 'none'
-      });
-      return; // 不再继续调用后端接口
-    } else {
+      // 检查是否有上传失败的照片
+      const failed = results.filter(item => item.error);
+      if (failed.length > 0) {
+        wx.hideLoading(); // 隐藏加载提示
+        wx.showToast({
+          title: `部分上传失败: ${failed.map(f => f.state).join(', ')}`,
+          icon: 'none'
+        });
+        return; // 不再继续调用后端接口
+      }
+  
       wx.showToast({
         title: '所有照片上传成功',
         icon: 'success'
       });
-    }
   
-    // 所有照片上传成功后，调用后端接口
-    try {
+      // 所有照片上传成功后，调用后端接口
       const response = await wx.cloud.callContainer({
         "config": {
           "env": "prod-4ggnzg0z43d1ab28"
@@ -199,6 +257,8 @@ Page({
         title: '后端处理失败',
         icon: 'none'
       });
+    } finally {
+      wx.hideLoading(); // 无论成功或失败，隐藏加载提示
     }
   },
 
@@ -226,6 +286,9 @@ Page({
         hint: hints[prevState],
         isAllCompleted: false // 重新拍摄则标志未完成
       });
+
+      // 播放语音提示
+      this.playAudio(prevState);
   
       wx.showToast({
         title: '请重新拍摄上一张照片',
