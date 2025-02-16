@@ -2,8 +2,12 @@
   <view class="container">
     <!-- 页面标题 -->
     <view class="header">
-      <text class="title">功能选择\n</text>
-      <text class="subtitle">请选择以下检测模式</text>
+      <view>
+        <text class="title">功能选择</text>
+      </view>
+      <view>
+        <text class="subtitle">请选择以下检测模式</text>
+      </view>
     </view>
 
     <!-- 按钮部分 -->
