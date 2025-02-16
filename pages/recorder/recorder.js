@@ -88,8 +88,7 @@ Page({
     });
 
     // 停止计时器
-    clearInterval(this.recordingTimer);
-    this.recordingTimer = null;
+    this.clearTimersAndAudio();
 
     // 播放录制完成的语音
     this.playAudio("resources/finish_video.mp3");
@@ -167,70 +166,26 @@ Page({
     });
   },
 
-  // 重新录制
-  restartRecording() {
-    this.setData({
-      showVideoPreview: false,
-      videoSrc: "",
-      recordingTime: 0,
-      formattedTime: "00:00",
-    });
-  },
-
-  // 上传视频
-  uploadVideo() {
-    const { videoSrc } = this.data;
-
-    if (!videoSrc) {
-      wx.showToast({
-        title: "没有视频可上传",
-        icon: "error",
-      });
-      return;
+  // 清除计时器和音频播放
+  clearTimersAndAudio() {
+    // 清除计时器
+    if (this.recordingTimer) {
+      clearInterval(this.recordingTimer);
+      this.recordingTimer = null;
     }
 
-    const app = getApp(); // 获取全局应用实例
-    const username = app.globalData.username || "anonymous_user"; // 获取用户名，默认值为 anonymous_user
+    // 停止音频播放
+    if (this.audioContext) {
+      this.audioContext.stop();
+      this.audioContext.destroy(); // 销毁音频上下文
+      this.audioContext = null;
+    }
+  },
 
-    wx.showLoading({
-      title: "上传中...",
-    });
-
-    // 使用用户名 + 时间戳命名文件
-    const timestamp = Date.now(); // 当前时间戳
-    const random = Math.floor(Math.random() * 1000); // 随机数，避免文件重名
-    const cloudPath = `videos/${username}-${timestamp}-${random}.mp4`;
-
-    // 调用云函数上传文件
-    wx.cloud.uploadFile({
-      cloudPath, // 云存储路径
-      filePath: videoSrc, // 本地视频路径
-      success: (res) => {
-        console.log("上传成功：", res);
-        const fileID = res.fileID; // 云存储返回的 fileID
-
-        this.setData({
-          fileID, // 保存 fileID
-        });
-
-        wx.showToast({
-          title: "上传成功",
-          icon: "success",
-        });
-
-        console.log("文件的 fileID: ", fileID); // 输出 fileID，供调试用
-      },
-      fail: (err) => {
-        console.error("上传失败：", err);
-        wx.showToast({
-          title: "上传失败",
-          icon: "error",
-        });
-      },
-      complete: () => {
-        wx.hideLoading();
-      },
-    });
+  // 页面卸载时触发
+  onUnload() {
+    // 清除计时器和音频播放
+    this.clearTimersAndAudio();
   },
 
   // 更新文字提示和语音播报
