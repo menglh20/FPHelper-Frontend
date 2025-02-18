@@ -87,7 +87,7 @@ Page({
       },
     });
 
-    // 停止计时器
+    // 停止计时器和音频
     this.clearTimersAndAudio();
 
     // 播放录制完成的语音
@@ -166,26 +166,97 @@ Page({
     });
   },
 
-  // 清除计时器和音频播放
-  clearTimersAndAudio() {
-    // 清除计时器
-    if (this.recordingTimer) {
-      clearInterval(this.recordingTimer);
-      this.recordingTimer = null;
-    }
-
-    // 停止音频播放
-    if (this.audioContext) {
-      this.audioContext.stop();
-      this.audioContext.destroy(); // 销毁音频上下文
-      this.audioContext = null;
-    }
+  // 重新录制
+  restartRecording() {
+    this.setData({
+      showVideoPreview: false,
+      videoSrc: "",
+      recordingTime: 0,
+      formattedTime: "00:00",
+    });
   },
 
-  // 页面卸载时触发
-  onUnload() {
-    // 清除计时器和音频播放
-    this.clearTimersAndAudio();
+  // 上传视频
+  async uploadVideo() {
+    const { videoSrc } = this.data;
+
+    if (!videoSrc) {
+      wx.showToast({
+        title: "没有视频可上传",
+        icon: "error",
+      });
+      return;
+    }
+
+    const app = getApp(); // 获取全局应用实例
+    const username = app.globalData.username;
+    let username_path = username.replace(/[^a-zA-Z0-9]/g, "");
+    if (!username_path) {
+      username_path = "defaultUser"; // 设置默认用户名
+    }
+
+    wx.showLoading({
+      title: "上传中...",
+    });
+
+    // 使用用户名 + 时间戳命名文件
+    const timestamp = Date.now(); // 当前时间戳
+    const cloudPath = `videos/${username_path}-${timestamp}.mp4`;
+
+    try {
+      // 将 wx.cloud.uploadFile 封装成 Promise
+      const fileID = await new Promise((resolve, reject) => {
+        wx.cloud.uploadFile({
+          cloudPath, // 云存储路径
+          filePath: videoSrc, // 本地视频路径
+          success: (res) => {
+            console.log("上传成功：", res);
+            resolve(res.fileID); // 成功时返回 fileID
+          },
+          fail: (err) => {
+            console.error("上传失败：", err);
+            wx.showToast({
+              title: "上传失败",
+              icon: "error",
+            });
+            reject(err); // 失败时抛出错误
+          },
+        });
+      });
+
+      console.log("文件的 fileID: ", fileID);
+
+      // 调用后端接口
+      const response = await wx.cloud.callContainer({
+        config: {
+          env: "prod-4ggnzg0z43d1ab28",
+        },
+        path: "/api/detect/detect_by_video",
+        header: {
+          "X-WX-SERVICE": "django-5dw4",
+          "content-type": "application/json",
+        },
+        method: "POST",
+        data: {
+          name: username,
+          fileID: fileID,
+        },
+      });
+
+      console.log("后端接口响应:", response);
+      wx.showToast({
+        title: "后端处理成功",
+        icon: "success",
+      });
+    } catch (err) {
+      console.error("错误:", err);
+      wx.showToast({
+        title: "上传或后端处理失败",
+        icon: "none",
+      });
+    } finally {
+      wx.hideLoading(); // 无论成功或失败，隐藏加载提示
+    }
   },
 
   // 更新文字提示和语音播报
@@ -242,5 +313,27 @@ Page({
     return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
       .toString()
       .padStart(2, "0")}`;
+  },
+
+  // 清除计时器和音频播放
+  clearTimersAndAudio() {
+    // 清除计时器
+    if (this.recordingTimer) {
+      clearInterval(this.recordingTimer);
+      this.recordingTimer = null;
+    }
+
+    // 停止音频播放
+    if (this.audioContext) {
+      this.audioContext.stop();
+      this.audioContext.destroy(); // 销毁音频上下文
+      this.audioContext = null;
+    }
+  },
+
+  // 页面卸载时触发
+  onUnload() {
+    // 清除计时器和音频播放
+    this.clearTimersAndAudio();
   },
 });

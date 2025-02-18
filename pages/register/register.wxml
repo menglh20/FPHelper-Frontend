@@ -11,11 +11,11 @@
       </view>
       <view class="text-wrapper">
         <text class="text-label">密码</text>
-        <input type="text" class="text-input" placeholder="请输入密码" bind:change="onInputPassword" />
+        <input type="password" class="text-input" placeholder="请输入密码" bind:change="onInputPassword" />
       </view>
       <view class="text-wrapper">
         <text class="text-label">确认密码</text>
-        <input type="text" class="text-input" placeholder="密码不得短于6个字符" bind:change="onConfirmPassword" />
+        <input type="password" class="text-input" placeholder="密码不得短于6个字符" bind:change="onConfirmPassword" />
       </view>
       <view class="button-wrapper">
         <button bindtap="bindViewRegister" type="primary">注册</button>

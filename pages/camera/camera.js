@@ -167,7 +167,7 @@ Page({
 
   async bindViewUpload() {
     const { photoPath } = this.data;
-  
+
     // 检查是否所有状态都有对应的照片
     const missingStates = Object.keys(photoPath).filter((key) => !photoPath[key]);
     if (missingStates.length > 0) {
@@ -177,19 +177,25 @@ Page({
       });
       return;
     }
-  
+
     // 显示上传中的提示
     wx.showLoading({
       title: '上传中...',
       mask: true // 设置遮罩，防止用户操作
     });
-  
+
     // 上传所有照片
     const app = getApp();
+    // 从全局数据中获取 username
     const username = app.globalData.username;
-    const suffix = username + Date.now();
+    let username_path = username.replace(/[^a-zA-Z0-9]/g, "");
+    if (!username_path) {
+      username_path = "defaultUser"; // 设置默认用户名
+    }
+    const suffix = username_path + Date.now();
+    
     const fileID = {};
-  
+
     try {
       // 上传任务并行处理
       const uploadTasks = Object.entries(photoPath).map(([state, path]) => {
@@ -209,10 +215,10 @@ Page({
           return { state, error: err }; // 返回失败结果
         });
       });
-  
+
       // 等待所有上传任务完成
       const results = await Promise.all(uploadTasks);
-  
+
       // 检查是否有上传失败的照片
       const failed = results.filter(item => item.error);
       if (failed.length > 0) {
@@ -223,12 +229,12 @@ Page({
         });
         return; // 不再继续调用后端接口
       }
-  
+
       wx.showToast({
         title: '所有照片上传成功',
         icon: 'success'
       });
-  
+
       // 所有照片上传成功后，调用后端接口
       const response = await wx.cloud.callContainer({
         "config": {
@@ -245,7 +251,7 @@ Page({
           "fileID": fileID // 上传完成的 fileID 对象
         }
       });
-  
+
       console.log('后端接口响应:', response);
       wx.showToast({
         title: '后端处理成功',
@@ -271,13 +277,13 @@ Page({
 
   bindViewRetake() {
     const { state, stateOrder, photoPath, hints } = this.data;
-  
+
     // 找到当前状态的索引
     const currentIndex = stateOrder.indexOf(state);
     if (currentIndex > 0) {
       const prevIndex = currentIndex - 1;
       const prevState = stateOrder[prevIndex];
-  
+
       // 清空上一张照片的路径
       photoPath[prevState] = '';
       this.setData({
@@ -289,7 +295,7 @@ Page({
 
       // 播放语音提示
       this.playAudio(prevState);
-  
+
       wx.showToast({
         title: '请重新拍摄上一张照片',
         icon: 'none'
