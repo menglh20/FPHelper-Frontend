@@ -1,0 +1,195 @@
+<view class="card-detail">
+  <!-- 总分 -->
+  <view class="total-score-section">
+    <view class="total-score-item">
+      <text>总分：</text>
+      <text class="total-score-value">{{calculatedTotalScore}}</text>
+    </view>
+  </view>
+
+  <!-- 静态对称性 -->
+  <view class="detail-section">
+    <view class="section-header">静态对称性</view>
+    <view class="detail-item">
+      <text class="detail-key">眼</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['rest symmetry'].eye}}"
+        value="{{selectedValues['rest symmetry'].eye || 0}}"
+        data-group="rest symmetry"
+        data-key="eye"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['rest symmetry'].eye[selectedValues['rest symmetry'].eye] || "选择0-1"}}</text>
+      </picker>
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">鼻唇沟</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['rest symmetry'].cheek}}"
+        value="{{selectedValues['rest symmetry'].cheek || 0}}"
+        data-group="rest symmetry"
+        data-key="cheek"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['rest symmetry'].cheek[selectedValues['rest symmetry'].cheek] || "选择0-2"}}</text>
+      </picker>
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">嘴</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['rest symmetry'].mouth}}"
+        value="{{selectedValues['rest symmetry'].mouth || 0}}"
+        data-group="rest symmetry"
+        data-key="mouth"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['rest symmetry'].mouth[selectedValues['rest symmetry'].mouth] || "选择0-1"}}</text>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 运动对称性 -->
+  <view class="detail-section">
+    <view class="section-header">运动对称性</view>
+    <view class="detail-item">
+      <text class="detail-key">抬额头</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['voluntary symmetry']['forehead wrinkle']}}"
+        value="{{selectedValues['voluntary symmetry']['forehead wrinkle'] || 0}}"
+        data-group="voluntary symmetry"
+        data-key="forehead wrinkle"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['voluntary symmetry']['forehead wrinkle'][selectedValues['voluntary symmetry']['forehead wrinkle']] || "选择0-5"}}</text>
+      </picker>
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">轻闭眼</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['voluntary symmetry']['eye closure']}}"
+        value="{{selectedValues['voluntary symmetry']['eye closure'] || 0}}"
+        data-group="voluntary symmetry"
+        data-key="eye closure"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['voluntary symmetry']['eye closure'][selectedValues['voluntary symmetry']['eye closure']] || "选择0-5"}}</text>
+      </picker>
+    </view><view class="detail-item">
+      <text class="detail-key">张嘴笑</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['voluntary symmetry']['smile']}}"
+        value="{{selectedValues['voluntary symmetry']['smile'] || 0}}"
+        data-group="voluntary symmetry"
+        data-key="smile"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['voluntary symmetry']['smile'][selectedValues['voluntary symmetry']['smile']] || "选择0-5"}}</text>
+      </picker>
+    </view><view class="detail-item">
+      <text class="detail-key">呲牙</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['voluntary symmetry']['snarl']}}"
+        value="{{selectedValues['voluntary symmetry']['snarl'] || 0}}"
+        data-group="voluntary symmetry"
+        data-key="snarl"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['voluntary symmetry']['snarl'][selectedValues['voluntary symmetry']['snarl']] || "选择0-5"}}</text>
+      </picker>
+    </view><view class="detail-item">
+      <text class="detail-key">嘟嘴</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['voluntary symmetry']['lip pucker']}}"
+        value="{{selectedValues['voluntary symmetry']['lip pucker'] || 0}}"
+        data-group="voluntary symmetry"
+        data-key="lip pucker"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['voluntary symmetry']['lip pucker'][selectedValues['voluntary symmetry']['lip pucker']] || "选择0-5"}}</text>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 联动分级 -->
+  <view class="detail-section">
+    <view class="section-header">联动分级</view>
+    <view class="detail-item">
+      <text class="detail-key">抬额头</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['synkinesis']['forehead wrinkle']}}"
+        value="{{selectedValues['synkinesis']['forehead wrinkle'] || 0}}"
+        data-group="synkinesis"
+        data-key="forehead wrinkle"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['synkinesis']['forehead wrinkle'][selectedValues['synkinesis']['forehead wrinkle']] || "选择0-3"}}</text>
+      </picker>
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">轻闭眼</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['synkinesis']['eye closure']}}"
+        value="{{selectedValues['synkinesis']['eye closure'] || 0}}"
+        data-group="synkinesis"
+        data-key="eye closure"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['synkinesis']['eye closure'][selectedValues['synkinesis']['eye closure']] || "选择0-3"}}</text>
+      </picker>
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">张嘴笑</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['synkinesis']['smile']}}"
+        value="{{selectedValues['synkinesis']['smile'] || 0}}"
+        data-group="synkinesis"
+        data-key="smile"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['synkinesis']['smile'][selectedValues['synkinesis']['smile']] || "选择0-3"}}</text>
+      </picker>
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">呲牙</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['synkinesis']['snarl']}}"
+        value="{{selectedValues['synkinesis']['snarl'] || 0}}"
+        data-group="synkinesis"
+        data-key="snarl"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['synkinesis']['snarl'][selectedValues['synkinesis']['snarl']] || "选择0-3"}}</text>
+      </picker>
+    </view>
+    <view class="detail-item">
+      <text class="detail-key">嘟嘴</text>
+      <picker
+        class="detail-input"
+        range="{{dropdownOptions['synkinesis']['lip pucker']}}"
+        value="{{selectedValues['synkinesis']['lip pucker'] || 0}}"
+        data-group="synkinesis"
+        data-key="lip pucker"
+        bindchange="onPickerChange"
+      >
+        <text>{{dropdownOptions['synkinesis']['lip pucker'][selectedValues['synkinesis']['lip pucker']] || "选择0-3"}}</text>
+      </picker>
+    </view>
+  </view>
+</view>
+
+<!-- 上传按钮 -->
+<view class="upload-section">
+  <button class="upload-button" bindtap="uploadComment">上传评论</button>
+</view>

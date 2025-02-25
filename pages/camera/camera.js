@@ -195,6 +195,7 @@ Page({
     const suffix = username_path + Date.now();
     
     const fileID = {};
+    let returnId = -1;
 
     try {
       // 上传任务并行处理
@@ -253,6 +254,7 @@ Page({
       });
 
       console.log('后端接口响应:', response);
+      returnId = response.data.id;
       wx.showToast({
         title: '后端处理成功',
         icon: 'success'
@@ -265,6 +267,13 @@ Page({
       });
     } finally {
       wx.hideLoading(); // 无论成功或失败，隐藏加载提示
+      if (returnId == -1) {
+        wx.navigateBack();
+      } else {
+        wx.navigateTo({
+          url: `../rating/rating?id=${returnId}`
+        });
+      }
     }
   },
 

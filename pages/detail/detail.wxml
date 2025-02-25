@@ -50,7 +50,7 @@
       <input class="detail-input" type="number" value="{{inputs['voluntary symmetry'].smile}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="smile" />
     </view>
     <view class="detail-item">
-      <text class="detail-key">咧嘴</text>
+      <text class="detail-key">呲牙</text>
       <text class="detail-value">{{detail['voluntary symmetry'].snarl}}</text>
       <input class="detail-input" type="number" value="{{inputs['voluntary symmetry'].snarl}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="snarl" />
     </view>
@@ -80,7 +80,7 @@
       <input class="detail-input" type="number" value="{{inputs['synkinesis'].smile}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="smile" />
     </view>
     <view class="detail-item">
-      <text class="detail-key">咧嘴</text>
+      <text class="detail-key">呲牙</text>
       <text class="detail-value">{{detail['synkinesis'].snarl}}</text>
       <input class="detail-input" type="number" value="{{inputs['synkinesis'].snarl}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="snarl" />
     </view>

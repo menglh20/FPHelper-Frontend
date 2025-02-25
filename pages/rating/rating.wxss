@@ -1,0 +1,102 @@
+/* 页面背景 */
+page {
+  background-color: #f4f6f8;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+/* 总分样式 */
+.total-score-section {
+  background-color: #ffffff;
+  margin: 16px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-score-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007aff;
+}
+
+/* 区域卡片样式 */
+.detail-section {
+  background-color: #ffffff;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 标题样式 */
+.section-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 12px;
+  border-left: 4px solid #007aff;
+  padding-left: 8px;
+}
+
+/* 每个项目的布局 */
+.detail-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+/* 字段名字 */
+.detail-key {
+  flex: 1;
+  font-size: 16px;
+  color: #666666;
+}
+
+/* 下拉框样式 */
+.detail-input {
+  flex: 2;
+  padding: 6px 12px;
+  font-size: 16px;
+  color: #333333;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  background-color: #f7f9fc;
+  text-align: center;
+}
+
+.detail-input:focus {
+  border-color: #007aff;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 122, 255, 0.4);
+}
+
+/* 按钮样式 */
+.upload-button {
+  background-color: #007aff;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background-color: #005bb5;
+}
+
+.upload-button:active {
+  background-color: #003f8a;
+}

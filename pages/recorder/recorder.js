@@ -202,6 +202,7 @@ Page({
     // 使用用户名 + 时间戳命名文件
     const timestamp = Date.now(); // 当前时间戳
     const cloudPath = `videos/${username_path}-${timestamp}.mp4`;
+    let returnId = -1;
 
     try {
       // 将 wx.cloud.uploadFile 封装成 Promise
@@ -244,6 +245,7 @@ Page({
       });
 
       console.log("后端接口响应:", response);
+      returnId = response.data.id
       wx.showToast({
         title: "后端处理成功",
         icon: "success",
@@ -256,6 +258,13 @@ Page({
       });
     } finally {
       wx.hideLoading(); // 无论成功或失败，隐藏加载提示
+      if (returnId == -1) {
+        wx.navigateBack();
+      } else {
+        wx.navigateTo({
+          url: `../rating/rating?id=${returnId}`
+        });
+      }
     }
   },
 

@@ -12,7 +12,7 @@ Page({
   },
   async UploadVideo() {
     const { uploadedVideo } = this.data; // 从页面的 data 中获取视频路径
-  
+
     if (!uploadedVideo) {
       wx.showToast({
         title: "没有视频可上传",
@@ -20,24 +20,25 @@ Page({
       });
       return;
     }
-  
+
     const app = getApp(); // 获取全局应用实例
     const username = app.globalData.username;
-    
+
     // 处理用户名，确保路径合法性
     let username_path = username ? username.replace(/[^a-zA-Z0-9]/g, "") : "";
     if (!username_path) {
       username_path = "defaultUser"; // 如果用户名无效，设置默认用户名
     }
-  
+
     wx.showLoading({
       title: "上传中...",
     });
-  
+
     // 使用用户名和时间戳生成唯一文件名
     const timestamp = Date.now(); // 当前时间戳
     const cloudPath = `videos/${username_path}-${timestamp}.mp4`;
-  
+    let returnId = -1;
+
     try {
       // 上传视频到云存储
       const fileID = await new Promise((resolve, reject) => {
@@ -58,9 +59,9 @@ Page({
           },
         });
       });
-  
+
       console.log("上传成功，文件 fileID: ", fileID);
-  
+
       // 调用后端检测接口
       const response = await wx.cloud.callContainer({
         config: {
@@ -77,7 +78,7 @@ Page({
           fileID: fileID, // 上传视频的 fileID
         },
       });
-  
+
       // 检查后端响应结果
       if (response && response.statusCode === 200 && response.data) {
         console.log("后端接口响应成功:", response.data);
@@ -85,9 +86,10 @@ Page({
           title: "处理成功",
           icon: "success",
         });
-  
+
         // 如果需要，可以将后端返回的结果显示到页面
-        // this.setData({ result: response.data });
+        console.log(response.data)
+        returnId = response.data.id
       } else {
         console.error("后端接口响应异常:", response);
         wx.showToast({
@@ -103,10 +105,16 @@ Page({
       });
     } finally {
       wx.hideLoading(); // 隐藏加载提示
-      wx.navigateBack();
+      if (returnId == -1) {
+        wx.navigateBack();
+      } else {
+        wx.navigateTo({
+          url: `../rating/rating?id=${returnId}`
+        });
+      }
     }
   },
   Back() {
-      wx.navigateBack();
+    wx.navigateBack();
   }
 });
