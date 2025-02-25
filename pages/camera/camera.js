@@ -35,7 +35,7 @@ Page({
       'pic_forehead_wrinkle': '请挑起眉毛并注视摄像头',
       'pic_eye_closure': '请轻轻闭上双眼并保持不动',
       'pic_smile': '请露齿微笑并注视摄像头',
-      'pic_snarl': '请放大鼻孔并注视摄像头',
+      'pic_snarl': '请用力呲牙，露出上牙齿，并注视摄像头',
       'pic_lip_pucker': '请嘟嘴做出亲吻动作并注视摄像头'
     },
     audioPaths: {

@@ -279,12 +279,20 @@ Page({
         audioPath = "resources/smile.mp3";
         break;
       case 40:
-        prompt = "请放大鼻孔并注视摄像头";
+        prompt = "请用力呲牙，露出上牙齿，并注视摄像头";
         audioPath = "resources/snarl.mp3";
         break;
       case 50:
         prompt = "请嘟嘴做出亲吻动作并注视摄像头";
         audioPath = "resources/lip_pucker.mp3";
+        break;
+      case 17:
+      case 27:
+      case 37:
+      case 47:
+      case 57:
+        prompt = "请放松";
+        audioPath = "resources/relax.mp3"
         break;
     }
 
@@ -332,6 +340,11 @@ Page({
   },
 
   // 页面卸载时触发
+  /**
+   * 当页面卸载时调用此方法。
+   * 它负责清除计时器和音频播放，以确保在页面关闭或导航离开时不会留下悬挂的资源。
+   * 这对于维护应用的性能和避免内存泄漏至关重要。
+   */
   onUnload() {
     // 清除计时器和音频播放
     this.clearTimersAndAudio();
