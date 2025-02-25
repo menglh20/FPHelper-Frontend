@@ -14,15 +14,29 @@
     <view class="button-wrapper">
       <view class="button-item">
         <button bindtap="bindViewTakePhoto" type="primary" class="action-button">
+          <image src="../../resources/takephoto-icon.png" class="button-icon" />
+          <text class="button-text">在线拍照检测</text>
+        </button>
+      </view>
+
+      <!-- <view class="button-item">
+        <button bindtap="bindViewUploadPhoto" type="primary" class="action-button">
           <image src="../../resources/photo-icon.png" class="button-icon" />
-          <text class="button-text">拍照检测</text>
+          <text class="button-text">本地拍照检测</text>
+        </button>
+      </view> -->
+
+      <view class="button-item">
+        <button bindtap="bindViewRecordVideo" type="primary" class="action-button">
+          <image src="../../resources/takevideo-icon.png" class="button-icon" />
+          <text class="button-text">在线视频检测</text>
         </button>
       </view>
 
       <view class="button-item">
-        <button bindtap="bindViewRecordVideo" type="primary" class="action-button">
+        <button bindtap="bindViewUploadVideo" type="primary" class="action-button">
           <image src="../../resources/video-icon.png" class="button-icon" />
-          <text class="button-text">视频检测</text>
+          <text class="button-text">本地视频检测</text>
         </button>
       </view>
     </view>

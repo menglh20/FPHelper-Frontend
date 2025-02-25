@@ -8,7 +8,8 @@
     "pages/detail/detail",
     "pages/consult/consult",
     "pages/detect/detect",
-    "pages/recorder/recorder"
+    "pages/recorder/recorder",
+    "pages/preview/preview"
   ],
   "tabBar": {
     "color": "#000000",
