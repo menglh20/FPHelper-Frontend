@@ -9,7 +9,6 @@
     "pages/consult/consult",
     "pages/detect/detect",
     "pages/recorder/recorder",
-    "pages/preview/preview",
     "pages/rating/rating",
     "pages/notice/notice"
   ],
