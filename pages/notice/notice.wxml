@@ -1,0 +1,20 @@
+<!--pages/notice/notice.wxml-->
+<view class="container">
+    <!-- 文字提示 -->
+    <view class="content">
+        <text class="title">须知提示</text>
+        <view class="list-container">
+            <text class="list-item">请仔细阅读以下内容，确保您已了解操作要求。</text>
+            <text class="list-item">1. 请在照明良好的的环境下进行检测。</text>
+            <text class="list-item">2. 检测时请勿佩戴眼镜或其他装饰品。</text>
+            <text class="list-item">3. 检测时请确保面部完全在屏幕中，露出完整五官。</text>
+            <text class="list-item">4. 检测时请注视摄像头，不要左右转头。</text>
+            <text class="list-item">5. 检测结果仅供参考。视频或照片不会用于其他用途。</text>
+        </view>
+    </view>
+
+    <!-- 返回按钮 -->
+    <view class="footer">
+        <button bindtap="goBack" class="back-button">返回</button>
+    </view>
+</view>

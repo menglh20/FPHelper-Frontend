@@ -39,6 +39,13 @@
           <text class="button-text">本地视频检测</text>
         </button>
       </view>
+
+      <view class="button-item">
+        <button bindtap="bindViewNotice" type="primary" class="action-button">
+          <image src="../../resources/info.png" class="button-icon" />
+          <text class="button-text">检测须知</text>
+        </button>
+      </view>
     </view>
   </view>
 </scroll-view>

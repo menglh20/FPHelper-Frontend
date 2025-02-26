@@ -1,0 +1,67 @@
+/* 页面容器 */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 顶部内容和底部返回按钮之间保持距离 */
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #f7f9fc, #eceff3); /* 背景渐变 */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* 内容区样式 */
+  .content {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 卡片阴影 */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* 列表样式 */
+  .list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 列表项间距 */
+  }
+  
+  .list-item {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    text-indent: 2em; /* 列表项首行缩进 */
+  }
+  
+  /* 返回按钮容器样式 */
+  .footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
+  
+  /* 返回按钮样式 */
+  .back-button {
+    background-color: #1aad19; /* 微信绿色 */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .back-button:active {
+    background-color: #179b16; /* 按下颜色变化 */
+  }

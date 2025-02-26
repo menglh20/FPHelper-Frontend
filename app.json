@@ -10,7 +10,8 @@
     "pages/detect/detect",
     "pages/recorder/recorder",
     "pages/preview/preview",
-    "pages/rating/rating"
+    "pages/rating/rating",
+    "pages/notice/notice"
   ],
   "tabBar": {
     "color": "#000000",
