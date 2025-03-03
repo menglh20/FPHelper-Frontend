@@ -11,6 +11,10 @@
     </view>
   </view>
 
+  <view class="preview-section">
+    <button class="preview-button" bindtap="Preview">{{hinttext}}</button>
+  </view>
+
   <!-- Rest Symmetry -->
   <view class="detail-section">
     <view class="section-header">静态对称性</view>

@@ -7,7 +7,7 @@
   <!-- 历史记录展示 -->
   <view class="results">
     <block wx:for="{{results}}" wx:key="id">
-      <view class="card" bind:tap="viewDetail" data-id="{{item.id}}" data-detail="{{item.detail}}" data-comment="{{item.comment}}">
+      <view class="card" bind:tap="viewDetail" data-id="{{item.id}}" data-detail="{{item.detail}}" data-comment="{{item.comment}}" data-type="{{item.type}}" data-fileId="{{item.fileId}}">
         <!-- 结果和时间 -->
         <view class="card-header">
           <text class="result-score">分数: {{item.result}}</text>

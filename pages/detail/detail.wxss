@@ -109,3 +109,24 @@ page {
 .upload-button:active {
   background-color: #005bb5;
 }
+
+/* 预览按钮的式样 */
+.preview-section {
+  margin: 16px;
+  text-align: center;
+}
+
+.preview-button {
+  background-color: #195e2d;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.preview-button:active {
+  background-color: #82eeaf;
+}

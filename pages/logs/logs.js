@@ -115,21 +115,21 @@ Page({
     const dateParts = serverTime.split(" ");
     const date = dateParts[0].split(".");
     const time = dateParts[1].split(":");
-  
+
     const year = parseInt(date[0], 10);
     const month = parseInt(date[1], 10) - 1; // JavaScript 中的月份从 0 开始
     const day = parseInt(date[2], 10);
-  
+
     const hour = parseInt(time[0], 10);
     const minute = parseInt(time[1], 10);
     const second = parseInt(time[2], 10);
-  
+
     // 创建 Date 对象
     const dateObj = new Date(year, month, day, hour, minute, second);
-  
+
     // 加上 8 个小时
     dateObj.setHours(dateObj.getHours() + hoursToAdd);
-  
+
     // 格式化为 "YYYY.MM.DD HH:mm:ss"
     const formattedDate = dateObj.getFullYear() +
       "." +
@@ -142,19 +142,19 @@ Page({
       String(dateObj.getMinutes()).padStart(2, "0") +
       ":" +
       String(dateObj.getSeconds()).padStart(2, "0");
-  
+
     return formattedDate;
   },
 
   viewDetail(e) {
-    const { id, detail, comment } = e.currentTarget.dataset;
-    
+    const { id, detail, comment, type, fileid } = e.currentTarget.dataset;
+
     // 使用全局变量或存储
     const app = getApp();
     app.globalData.detailData = detail;
 
     wx.navigateTo({
-        url: `../detail/detail?id=${id}&comment=${encodeURIComponent(comment)}`
+      url: `../detail/detail?id=${id}&comment=${encodeURIComponent(comment)}&type=${type}&fileId=${fileid}`
     });
   }
 });

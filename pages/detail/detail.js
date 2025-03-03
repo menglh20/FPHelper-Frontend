@@ -3,6 +3,9 @@ Page({
     id: "",
     detail: {},
     comment: "",
+    type: "",
+    fileId: "",
+    hinttext: "",
     inputs: {
       'rest symmetry': {
         'eye': 0,
@@ -52,10 +55,20 @@ Page({
   },
 
   onLoad(options) {
-    const { id, comment } = options;
+    const { id, comment, type, fileId } = options;
 
     const app = getApp();
     const detail = app.globalData.detailData;
+
+    console.log(type)
+    console.log(fileId)
+
+    let hinttext = "";
+    if (type == "image") {
+      hinttext = "查看图片";
+    } else {
+      hinttext = "查看视频";
+    }
 
     let parsedInputs = {
       'rest symmetry': {},
@@ -83,6 +96,9 @@ Page({
         id,
         detail,
         comment: decodeURIComponent(comment),
+        type,
+        fileId,
+        hinttext,
         inputs: parsedInputs,
         originalTotalScore,
         calculatedTotalScore
@@ -225,6 +241,93 @@ Page({
           duration: 2000
         });
         console.error('上传失败:', err);
+      }
+    });
+  },
+
+  Preview() {
+    const { type, fileId } = this.data;
+    if (!fileId) {
+      wx.showToast({
+        title: '暂时不支持预览！',
+        icon: 'error',
+        duration: 2000
+      })
+    } else {
+      if (type == "image") {
+        this.previewImage(fileId);
+      } else {
+        this.previewVideo(fileId);
+      }
+    }
+
+  },
+
+  previewImage(fileId) {
+    const correctedFileId = fileId.replace(/'/g, '"');
+    const fileIdDict = JSON.parse(correctedFileId);
+    const { pic_forehead_wrinkle, pic_at_rest, pic_snarl, pic_eye_closure, pic_smile, pic_lip_pucker } = fileIdDict;
+
+    // 调用微信云开发的 getTempFileURL 接口，获取图片临时访问地址
+    wx.cloud.getTempFileURL({
+      fileList: [pic_forehead_wrinkle, pic_at_rest, pic_snarl, pic_eye_closure, pic_smile, pic_lip_pucker],
+      success: res => {
+        const fileList = res.fileList;
+
+        // 判断是否成功获取到图片临时地址
+        if (fileList && fileList.length > 0) {
+          const urls = fileList.map(file => file.tempFileURL); // 获取对应的临时访问 URL
+
+          // 使用 wx.previewImage 预览图片
+          wx.previewImage({
+            urls: urls, // 传入图片的 URL 列表
+            current: urls[0], // 默认预览第一张图片
+            success: () => {
+              console.log('图片预览成功');
+            },
+            fail: err => {
+              console.error('图片预览失败', err);
+            }
+          });
+        } else {
+          console.error('未能获取到图片的临时 URL');
+        }
+      },
+      fail: err => {
+        console.error('获取图片临时 URL 失败', err);
+      }
+    });
+  },
+
+  previewVideo(fileId) {
+    wx.cloud.getTempFileURL({
+      fileList: [fileId], // 传入文件的 fileId（微信云存储中的资源 ID）
+      success: res => {
+        const fileList = res.fileList;
+        if (fileList && fileList.length > 0) {
+          const tempFileURL = fileList[0].tempFileURL; // 获取到临时访问地址
+
+          // 使用 wx.previewMedia 预览视频
+          wx.previewMedia({
+            sources: [
+              {
+                url: tempFileURL, // 视频的临时访问地址
+                type: 'video'    // 资源类型，指定为视频
+              }
+            ],
+            success() {
+              console.log('视频预览成功');
+            },
+            fail(err) {
+              console.error('视频预览失败', err);
+            }
+          });
+        } else {
+          console.error('未能获取到视频的临时 URL');
+        }
+      },
+      fail: err => {
+        console.error('获取视频临时 URL 失败', err);
       }
     });
   }

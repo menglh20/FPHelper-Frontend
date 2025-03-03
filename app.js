@@ -5,6 +5,7 @@ App({
   },
   globalData: {
     username: '',
-    detailData: {}
+    detailData: {},
+    fileId: {}
   }
 })
