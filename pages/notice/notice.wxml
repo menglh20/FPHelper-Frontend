@@ -9,7 +9,7 @@
             <text class="list-item">2. 检测时请勿佩戴眼镜或其他装饰品。</text>
             <text class="list-item">3. 检测时请确保面部完全在屏幕中，露出完整五官。</text>
             <text class="list-item">4. 检测时请注视摄像头，不要左右转头。</text>
-            <text class="list-item">5. 用于检测的视频大小不能超过40MB，时间在40秒到70秒内。</text>
+            <text class="list-item">5. 用于检测的视频大小不能超过50MB，时间在20秒到70秒内。</text>
             <text class="list-item">6. 检测结果仅供参考。视频或照片不会用于其他用途。</text>
         </view>
     </view>

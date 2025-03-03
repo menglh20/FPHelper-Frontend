@@ -41,18 +41,18 @@ Page({
                 const sizeMB = tempFile.size / 1024 / 1024; // 视频大小（MB）
 
                 // 校验时长
-                if (duration < 40 || duration > 70) {
+                if (duration < 20 || duration > 70) {
                     wx.showToast({
-                        title: '视频时长必须在40-70秒之间',
+                        title: '视频时长必须在20-70秒之间',
                         icon: 'none',
                     });
                     return;
                 }
 
                 // 校验大小
-                if (sizeMB > 40) {
+                if (sizeMB > 50) {
                     wx.showToast({
-                        title: '视频大小不能超过40MB',
+                        title: '视频大小不能超过50MB',
                         icon: 'none',
                     });
                     return;
