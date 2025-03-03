@@ -76,16 +76,6 @@ Page({
   // 计算总分
   calculateTotalScore() {
     const { selectedValues, dropdownOptions } = this.data;
-    let totalScore = 0;
-
-    // 遍历所有选择的值并根据对应的分值累加到总分
-    for (const group in selectedValues) {
-      for (const key in selectedValues[group]) {
-        const selectedIndex = selectedValues[group][key];
-        const score = parseFloat(dropdownOptions[group][key][selectedIndex]);
-        totalScore += score;
-      }
-    }
 
     // 根据公式设置总分
     const voluntarySymmetryScore = this.sumNestedValues(selectedValues["voluntary symmetry"], dropdownOptions["voluntary symmetry"]);
@@ -142,7 +132,12 @@ Page({
     }
 
     // 将 selectedValues 转换为 JSON 字符串
-    const commentString = JSON.stringify(selectedValues);
+    let realValues = selectedValues;
+    for (const key in realValues["voluntary symmetry"]) {
+      realValues["voluntary symmetry"][key] += 1
+    }
+
+    const commentString = JSON.stringify(realValues);
 
     // 调用后端接口上传数据
     wx.cloud.callContainer({

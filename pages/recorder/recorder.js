@@ -245,26 +245,35 @@ Page({
       });
 
       console.log("后端接口响应:", response);
-      returnId = response.data.id
-      wx.showToast({
-        title: "后端处理成功",
-        icon: "success",
-      });
+      if(response.data.id) {
+        returnId = response.data.id
+        wx.showToast({
+          title: "后端处理成功",
+          icon: "success",
+        });
+      } else {
+        wx.showToast({
+          title: "检测失败，请确保视频中出现完整面部!",
+          icon: "none",
+        });
+      }
     } catch (err) {
       console.error("错误:", err);
       wx.showToast({
-        title: "上传或后端处理失败",
+        title: "服务器繁忙，请稍后在历史数据中查询检测结果~",
         icon: "none",
       });
     } finally {
-      wx.hideLoading(); // 无论成功或失败，隐藏加载提示
-      if (returnId == -1) {
-        wx.navigateBack();
-      } else {
-        wx.navigateTo({
-          url: `../rating/rating?id=${returnId}`
-        });
-      }
+      setTimeout(() => {
+        wx.hideLoading(); // 无论成功或失败，隐藏加载提示
+        if (returnId == -1) {
+          wx.navigateBack();
+        } else {
+          wx.navigateTo({
+            url: `../rating/rating?id=${returnId}`
+          });
+        }
+      }, 1000);
     }
   },
 
