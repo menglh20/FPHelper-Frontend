@@ -59,12 +59,12 @@
       <picker
         class="detail-input"
         range="{{dropdownOptions['voluntary symmetry']['forehead wrinkle']}}"
-        value="{{selectedValues['voluntary symmetry']['forehead wrinkle'] || 0}}"
+        value="{{selectedValues['voluntary symmetry']['forehead wrinkle'] || 5}}"
         data-group="voluntary symmetry"
         data-key="forehead wrinkle"
         bindchange="onPickerChange"
       >
-        <text>{{dropdownOptions['voluntary symmetry']['forehead wrinkle'][selectedValues['voluntary symmetry']['forehead wrinkle']] || "选择0-5"}}</text>
+        <text>{{dropdownOptions['voluntary symmetry']['forehead wrinkle'][selectedValues['voluntary symmetry']['forehead wrinkle']] || "选择1-5"}}</text>
       </picker>
     </view>
     <view class="detail-item">
@@ -72,48 +72,48 @@
       <picker
         class="detail-input"
         range="{{dropdownOptions['voluntary symmetry']['eye closure']}}"
-        value="{{selectedValues['voluntary symmetry']['eye closure'] || 0}}"
+        value="{{selectedValues['voluntary symmetry']['eye closure'] || 5}}"
         data-group="voluntary symmetry"
         data-key="eye closure"
         bindchange="onPickerChange"
       >
-        <text>{{dropdownOptions['voluntary symmetry']['eye closure'][selectedValues['voluntary symmetry']['eye closure']] || "选择0-5"}}</text>
+        <text>{{dropdownOptions['voluntary symmetry']['eye closure'][selectedValues['voluntary symmetry']['eye closure']] || "选择1-5"}}</text>
       </picker>
     </view><view class="detail-item">
       <text class="detail-key">张嘴笑</text>
       <picker
         class="detail-input"
         range="{{dropdownOptions['voluntary symmetry']['smile']}}"
-        value="{{selectedValues['voluntary symmetry']['smile'] || 0}}"
+        value="{{selectedValues['voluntary symmetry']['smile'] || 5}}"
         data-group="voluntary symmetry"
         data-key="smile"
         bindchange="onPickerChange"
       >
-        <text>{{dropdownOptions['voluntary symmetry']['smile'][selectedValues['voluntary symmetry']['smile']] || "选择0-5"}}</text>
+        <text>{{dropdownOptions['voluntary symmetry']['smile'][selectedValues['voluntary symmetry']['smile']] || "选择1-5"}}</text>
       </picker>
     </view><view class="detail-item">
       <text class="detail-key">呲牙</text>
       <picker
         class="detail-input"
         range="{{dropdownOptions['voluntary symmetry']['snarl']}}"
-        value="{{selectedValues['voluntary symmetry']['snarl'] || 0}}"
+        value="{{selectedValues['voluntary symmetry']['snarl'] || 5}}"
         data-group="voluntary symmetry"
         data-key="snarl"
         bindchange="onPickerChange"
       >
-        <text>{{dropdownOptions['voluntary symmetry']['snarl'][selectedValues['voluntary symmetry']['snarl']] || "选择0-5"}}</text>
+        <text>{{dropdownOptions['voluntary symmetry']['snarl'][selectedValues['voluntary symmetry']['snarl']] || "选择1-5"}}</text>
       </picker>
     </view><view class="detail-item">
       <text class="detail-key">嘟嘴</text>
       <picker
         class="detail-input"
         range="{{dropdownOptions['voluntary symmetry']['lip pucker']}}"
-        value="{{selectedValues['voluntary symmetry']['lip pucker'] || 0}}"
+        value="{{selectedValues['voluntary symmetry']['lip pucker'] || 5}}"
         data-group="voluntary symmetry"
         data-key="lip pucker"
         bindchange="onPickerChange"
       >
-        <text>{{dropdownOptions['voluntary symmetry']['lip pucker'][selectedValues['voluntary symmetry']['lip pucker']] || "选择0-5"}}</text>
+        <text>{{dropdownOptions['voluntary symmetry']['lip pucker'][selectedValues['voluntary symmetry']['lip pucker']] || "选择1-5"}}</text>
       </picker>
     </view>
   </view>

@@ -10,11 +10,11 @@ Page({
         mouth: ["0",  "1"], // 嘴对应的下拉选项
       },
       "voluntary symmetry": {
-        "forehead wrinkle": ["0", "1", "2", "3", "4", "5"],
-        "eye closure": ["0", "1", "2", "3", "4", "5"],
-        smile: ["0", "1", "2", "3", "4", "5"],
-        snarl: ["0", "1", "2", "3", "4", "5"],
-        "lip pucker": ["0", "1", "2", "3", "4", "5"],
+        "forehead wrinkle": ["1", "2", "3", "4", "5"],
+        "eye closure": ["1", "2", "3", "4", "5"],
+        smile: ["1", "2", "3", "4", "5"],
+        snarl: ["1", "2", "3", "4", "5"],
+        "lip pucker": ["1", "2", "3", "4", "5"],
       },
       synkinesis: {
         "forehead wrinkle": ["0", "1", "2", "3"],
@@ -31,11 +31,11 @@ Page({
         mouth: 0,
       },
       "voluntary symmetry": {
-        "forehead wrinkle": 0,
-        "eye closure": 0,
-        smile: 0,
-        snarl: 0,
-        "lip pucker": 0,
+        "forehead wrinkle": 4,
+        "eye closure": 4,
+        smile: 4,
+        snarl: 4,
+        "lip pucker": 4,
       },
       synkinesis: {
         "forehead wrinkle": 0,
@@ -51,7 +51,7 @@ Page({
   onLoad(options) {
     const { id } = options;
 
-    let calculatedTotalScore = 0; // 初始化的计算后总分
+    let calculatedTotalScore = 100; // 初始化的计算后总分
 
     this.setData({
       id,

@@ -17,17 +17,23 @@
     <view class="detail-item">
       <text class="detail-key">眼</text>
       <text class="detail-value">{{detail['rest symmetry'].eye}}</text>
-      <input class="detail-input" type="number" value="{{inputs['rest symmetry'].eye}}" placeholder="输入0-1" bindinput="onInputChange" data-group="rest symmetry" data-key="eye" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['rest symmetry'].eye}}" value="{{pickerOptions['rest symmetry'].eye.indexOf(inputs['rest symmetry'].eye)}}" bindchange="onPickerChange" data-group="rest symmetry" data-key="eye">
+        <view class="picker">{{inputs['rest symmetry'].eye || '0'}}</view>
+      </picker>
     </view>
     <view class="detail-item">
       <text class="detail-key">鼻唇沟</text>
       <text class="detail-value">{{detail['rest symmetry'].cheek}}</text>
-      <input class="detail-input" type="number" value="{{inputs['rest symmetry'].cheek}}" placeholder="输入0-2" bindinput="onInputChange" data-group="rest symmetry" data-key="cheek" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['rest symmetry'].cheek}}" value="{{pickerOptions['rest symmetry'].cheek.indexOf(inputs['rest symmetry'].cheek)}}" bindchange="onPickerChange" data-group="rest symmetry" data-key="cheek">
+        <view class="picker">{{inputs['rest symmetry'].cheek || '0'}}</view>
+      </picker>
     </view>
     <view class="detail-item">
       <text class="detail-key">嘴</text>
       <text class="detail-value">{{detail['rest symmetry'].mouth}}</text>
-      <input class="detail-input" type="number" value="{{inputs['rest symmetry'].mouth}}" placeholder="输入0-1" bindinput="onInputChange" data-group="rest symmetry" data-key="mouth" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['rest symmetry'].mouth}}" value="{{pickerOptions['rest symmetry'].mouth.indexOf(inputs['rest symmetry'].mouth)}}" bindchange="onPickerChange" data-group="rest symmetry" data-key="mouth">
+        <view class="picker">{{inputs['rest symmetry'].mouth || '0'}}</view>
+      </picker>
     </view>
   </view>
 
@@ -37,27 +43,37 @@
     <view class="detail-item">
       <text class="detail-key">抬额头</text>
       <text class="detail-value">{{detail['voluntary symmetry']['forehead wrinkle']}}</text>
-      <input class="detail-input" type="number" value="{{inputs['voluntary symmetry']['forehead wrinkle']}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="forehead wrinkle" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['voluntary symmetry']['forehead wrinkle']}}" value="{{pickerOptions['voluntary symmetry']['forehead wrinkle'].indexOf(inputs['voluntary symmetry']['forehead wrinkle'])}}" bindchange="onPickerChange" data-group="voluntary symmetry" data-key="forehead wrinkle">
+        <view class="picker">{{inputs['voluntary symmetry']['forehead wrinkle'] || '请选择1-5'}}</view>
+      </picker>
     </view>
     <view class="detail-item">
       <text class="detail-key">轻闭眼</text>
       <text class="detail-value">{{detail['voluntary symmetry']['eye closure']}}</text>
-      <input class="detail-input" type="number" value="{{inputs['voluntary symmetry']['eye closure']}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="eye closure" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['voluntary symmetry']['eye closure']}}" value="{{pickerOptions['voluntary symmetry']['eye closure'].indexOf(inputs['voluntary symmetry']['eye closure'])}}" bindchange="onPickerChange" data-group="voluntary symmetry" data-key="eye closure">
+        <view class="picker">{{inputs['voluntary symmetry']['eye closure'] || '请选择1-5'}}</view>
+      </picker>
     </view>
     <view class="detail-item">
       <text class="detail-key">张嘴微笑</text>
       <text class="detail-value">{{detail['voluntary symmetry'].smile}}</text>
-      <input class="detail-input" type="number" value="{{inputs['voluntary symmetry'].smile}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="smile" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['voluntary symmetry'].smile}}" value="{{pickerOptions['voluntary symmetry'].smile.indexOf(inputs['voluntary symmetry'].smile)}}" bindchange="onPickerChange" data-group="voluntary symmetry" data-key="smile">
+        <view class="picker">{{inputs['voluntary symmetry'].smile || '请选择1-5'}}</view>
+      </picker>
     </view>
     <view class="detail-item">
       <text class="detail-key">呲牙</text>
       <text class="detail-value">{{detail['voluntary symmetry'].snarl}}</text>
-      <input class="detail-input" type="number" value="{{inputs['voluntary symmetry'].snarl}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="snarl" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['voluntary symmetry'].snarl}}" value="{{pickerOptions['voluntary symmetry'].snarl.indexOf(inputs['voluntary symmetry'].snarl)}}" bindchange="onPickerChange" data-group="voluntary symmetry" data-key="snarl">
+        <view class="picker">{{inputs['voluntary symmetry'].snarl || '请选择1-5'}}</view>
+      </picker>
     </view>
     <view class="detail-item">
       <text class="detail-key">唇吸吮</text>
       <text class="detail-value">{{detail['voluntary symmetry']['lip pucker']}}</text>
-      <input class="detail-input" type="number" value="{{inputs['voluntary symmetry']['lip pucker']}}" placeholder="输入0-5" bindinput="onInputChange" data-group="voluntary symmetry" data-key="lip pucker" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['voluntary symmetry']['lip pucker']}}" value="{{pickerOptions['voluntary symmetry']['lip pucker'].indexOf(inputs['voluntary symmetry']['lip pucker'])}}" bindchange="onPickerChange" data-group="voluntary symmetry" data-key="lip pucker">
+        <view class="picker">{{inputs['voluntary symmetry']['lip pucker'] || '请选择1-5'}}</view>
+      </picker>
     </view>
   </view>
 
@@ -67,27 +83,37 @@
     <view class="detail-item">
       <text class="detail-key">抬额头</text>
       <text class="detail-value">{{detail['synkinesis']['forehead wrinkle']}}</text>
-      <input class="detail-input" type="number" value="{{inputs['synkinesis']['forehead wrinkle']}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="forehead wrinkle" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['synkinesis']['forehead wrinkle']}}" value="{{pickerOptions['synkinesis']['forehead wrinkle'].indexOf(inputs['synkinesis']['forehead wrinkle'])}}" bindchange="onPickerChange" data-group="synkinesis" data-key="forehead wrinkle">
+        <view class="picker">{{inputs['synkinesis']['forehead wrinkle'] || '0'}}</view>
+      </picker>
     </view>
     <view class="detail-item">
       <text class="detail-key">轻闭眼</text>
       <text class="detail-value">{{detail['synkinesis']['eye closure']}}</text>
-      <input class="detail-input" type="number" value="{{inputs['synkinesis']['eye closure']}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="eye closure" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['synkinesis']['eye closure']}}" value="{{pickerOptions['synkinesis']['eye closure'].indexOf(inputs['synkinesis']['eye closure'])}}" bindchange="onPickerChange" data-group="synkinesis" data-key="eye closure">
+        <view class="picker">{{inputs['synkinesis']['eye closure'] || '0'}}</view>
+      </picker>
     </view>
     <view class="detail-item">
       <text class="detail-key">张嘴微笑</text>
       <text class="detail-value">{{detail['synkinesis'].smile}}</text>
-      <input class="detail-input" type="number" value="{{inputs['synkinesis'].smile}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="smile" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['synkinesis'].smile}}" value="{{pickerOptions['synkinesis'].smile.indexOf(inputs['synkinesis'].smile)}}" bindchange="onPickerChange" data-group="synkinesis" data-key="smile">
+        <view class="picker">{{inputs['synkinesis'].smile || '0'}}</view>
+      </picker>
     </view>
     <view class="detail-item">
       <text class="detail-key">呲牙</text>
       <text class="detail-value">{{detail['synkinesis'].snarl}}</text>
-      <input class="detail-input" type="number" value="{{inputs['synkinesis'].snarl}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="snarl" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['synkinesis'].snarl}}" value="{{pickerOptions['synkinesis'].snarl.indexOf(inputs['synkinesis'].snarl)}}" bindchange="onPickerChange" data-group="synkinesis" data-key="snarl">
+        <view class="picker">{{inputs['synkinesis'].snarl || '0'}}</view>
+      </picker>
     </view>
     <view class="detail-item">
       <text class="detail-key">唇吸吮</text>
       <text class="detail-value">{{detail['synkinesis']['lip pucker']}}</text>
-      <input class="detail-input" type="number" value="{{inputs['synkinesis']['lip pucker']}}" placeholder="输入0-3" bindinput="onInputChange" data-group="synkinesis" data-key="lip pucker" />
+      <picker class="detail-input" mode="selector" range="{{pickerOptions['synkinesis']['lip pucker']}}" value="{{pickerOptions['synkinesis']['lip pucker'].indexOf(inputs['synkinesis']['lip pucker'])}}" bindchange="onPickerChange" data-group="synkinesis" data-key="lip pucker">
+        <view class="picker">{{inputs['synkinesis']['lip pucker'] || '0'}}</view>
+      </picker>
     </view>
   </view>
 </view>
