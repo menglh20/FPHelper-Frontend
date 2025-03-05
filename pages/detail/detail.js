@@ -5,7 +5,7 @@ Page({
     comment: "",
     type: "",
     fileId: "",
-    hinttext: "",
+    hinttext: "查看图片",
     inputs: {
       'rest symmetry': {
         'eye': 0,
