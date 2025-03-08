@@ -1,0 +1,29 @@
+<!--pages/photo/photo.wxml-->
+<view class="container">
+  <!-- 顶部文字描述 -->
+  <view class="header">
+    <text>请上传以下六张照片进行检测</text>
+  </view>
+
+  <!-- 图片上传区域 -->
+  <view class="image-grid">
+    <block wx:for="{{photoKeys}}" wx:key="key">
+      <view class="image-item">
+        <!-- 检测图片路径是否存在，显示预览或上传按钮 -->
+        <block wx:if="{{photoPath[item]}}">
+          <!-- 预览框：显示已上传的图片 -->
+          <image class="preview-image" src="{{photoPath[item]}}" bindtap="chooseImage" data-key="{{item}}" />
+        </block>
+        <block wx:else>
+          <!-- 上传框，点击上传图片 -->
+          <button class="upload-button" bindtap="chooseImage" data-key="{{item}}">+</button>
+        </block>
+        <!-- 图片标签 -->
+        <text class="image-label">{{imageLabels[item]}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 上传检测按钮 -->
+  <button class="upload-button-main" bindtap="upload">上传检测</button>
+</view>

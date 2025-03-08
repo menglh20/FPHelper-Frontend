@@ -19,12 +19,12 @@
         </button>
       </view>
 
-      <!-- <view class="button-item">
+      <view class="button-item">
         <button bindtap="bindViewUploadPhoto" type="primary" class="action-button">
           <image src="../../resources/photo-icon.png" class="button-icon" />
-          <text class="button-text">本地拍照检测</text>
+          <text class="button-text">本地图片检测</text>
         </button>
-      </view> -->
+      </view>
 
       <view class="button-item">
         <button bindtap="bindViewRecordVideo" type="primary" class="action-button">

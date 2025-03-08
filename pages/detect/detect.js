@@ -22,7 +22,9 @@ Page({
   },
 
   bindViewUploadPhoto() {
-
+    wx.navigateTo({
+      url: '../photo/photo',
+    })
   },
 
   bindViewUploadVideo() {

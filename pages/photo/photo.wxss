@@ -1,0 +1,77 @@
+/* pages/photo/photo.wxss */
+/* 页面整体布局样式 */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+}
+
+/* 顶部文字描述样式 */
+.header {
+  text-align: center;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 图片网格的布局样式 */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+/* 单个图片项样式 */
+.image-item {
+  width: 300rpx;
+  height: 300rpx;
+  position: relative;
+  border: 1px dashed #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+
+/* 上传按钮样式 */
+.upload-button {
+  font-size: 60rpx;
+  color: #aaa;
+  background-color: #f9f9f9;
+  border: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+
+/* 图片预览样式 */
+.preview-image {
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+  border-radius: 10rpx;
+}
+
+/* 图片标签样式 */
+.image-label {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 上传检测按钮样式 */
+.upload-button-main {
+  width: 100%;
+  height: 80rpx;
+  background-color: #4caf50;
+  color: white;
+  font-size: 32rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
