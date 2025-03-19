@@ -1,96 +1,122 @@
 /* 顶层容器样式 */
 .container {
-  padding: 20rpx;
-  background-color: #f9f9f9;
+    padding: 20rpx;
+    background-color: #f9f9f9;
 }
 
 /* 顶部按钮样式 */
 .header {
-  text-align: center;
-  margin-bottom: 30rpx;
+    text-align: center;
+    margin-bottom: 30rpx;
 }
 
 .fetch-button {
-  background-color: #007aff;
-  color: white;
-  padding: 15rpx 30rpx;
-  border-radius: 10rpx;
-  font-size: 30rpx;
+    background-color: #007aff;
+    color: white;
+    padding: 15rpx 30rpx;
+    border-radius: 10rpx;
+    font-size: 30rpx;
 }
 
 /* 卡片样式 */
 .card {
-  background-color: white;
-  border-radius: 15rpx;
-  padding: 30rpx;
-  margin-bottom: 30rpx;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+    background-color: white;
+    border-radius: 15rpx;
+    padding: 30rpx;
+    margin-bottom: 30rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* 卡片头部：结果+时间 */
 .card-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30rpx;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30rpx;
 }
 
 .result-score {
-  font-size: 50rpx;
-  font-weight: bold;
-  color: #007aff;
+    font-size: 50rpx;
+    font-weight: bold;
+    color: #007aff;
 }
 
 .result-time {
-  font-size: 26rpx;
-  color: #888;
+    font-size: 26rpx;
+    color: #888;
 }
 
 /* 详情样式 */
 .card-detail {
-  margin-top: 10rpx;
+    margin-top: 10rpx;
 }
 
 .detail-section {
-  margin-bottom: 30rpx;
+    margin-bottom: 30rpx;
 }
 
 .detail-title {
-  font-size: 28rpx;
-  font-weight: bold;
-  margin-bottom: 15rpx;
-  color: #333;
+    font-size: 28rpx;
+    font-weight: bold;
+    margin-bottom: 15rpx;
+    color: #333;
 }
 
 .detail-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 8rpx 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 8rpx 0;
 }
 
 .detail-key {
-  font-size: 26rpx;
-  color: #555;
+    font-size: 26rpx;
+    color: #555;
 }
 
 .detail-value {
-  font-size: 26rpx;
-  color: #007aff;
+    font-size: 26rpx;
+    color: #007aff;
 }
 
 /* 分页按钮样式 */
 .pagination {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 居中对齐按钮和文本 */
+    margin-top: 30rpx;
 }
 
 .page-button {
-  background-color: #007aff;
-  color: white;
-  padding: 15rpx 40rpx;
-  border-radius: 10rpx;
-  font-size: 28rpx;
+    background-color: #007aff;
+    color: white;
+    padding: 15rpx 40rpx;
+    border-radius: 10rpx;
+    font-size: 28rpx;
+    transition: all 0.3s ease;
+    /* 添加交互效果 */
 }
+
+.page-button.disabled {
+    background-color: #cccccc;
+    /* 禁用按钮的背景颜色 */
+    color: #666666;
+    /* 禁用按钮的文字颜色 */
+}
+
+.page-button[disabled] {
+    cursor: not-allowed;
+    /* 禁用时鼠标样式 */
+}
+
+.page-info {
+    display: flex;
+    flex-direction: column; /* 让内容垂直排列 */
+    align-items: center; /* 水平居中 */
+    text-align: center; /* 文本居中对齐 */
+    font-size: 26rpx;
+    color: #333333;
+    line-height: 40rpx; /* 调整行高，让换行更自然 */
+  }

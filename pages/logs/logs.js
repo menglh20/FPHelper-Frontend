@@ -4,6 +4,7 @@ Page({
         name: '',
         page: 1,
         total: 0,
+        totalPages: 1,
         results: []
     },
 
@@ -93,6 +94,7 @@ Page({
 
                 this.setData({
                     total: res.data.total,
+                    totalPages: Math.ceil(res.data.total / 10),
                     results: results
                 });
             } else {
