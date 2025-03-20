@@ -134,7 +134,7 @@ Page({
         return acc;
       }, {});
 
-      wx.showToast({ title: '照片上传成功', icon: 'success' });
+      // wx.showToast({ title: '照片上传成功', icon: 'success' });
       return fileIDs;
     } catch (err) {
       wx.showToast({ title: '部分上传失败', icon: 'none' });

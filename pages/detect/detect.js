@@ -86,6 +86,7 @@ Page({
 
     wx.showLoading({
       title: "上传中...",
+      mask: true
     });
 
     let returnId = -1;

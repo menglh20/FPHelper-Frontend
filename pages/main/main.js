@@ -36,7 +36,11 @@ Page({
     const app = getApp();
     const name = app.globalData.username;
 
-    wx.showLoading({ title: '加载中...' }); // 显示加载动画
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+
     try {
       const res = await wx.cloud.callContainer({
         config: {
@@ -146,7 +150,7 @@ Page({
         }
       ]
     };
-  
+
     chart.setOption(options);
   },
 
