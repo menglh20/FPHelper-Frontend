@@ -84,25 +84,26 @@ Page({
       return;
     }
 
-    const app = getApp(); // 获取全局应用实例
-    const username = app.globalData.username;
-
-    // 处理用户名，确保路径合法性
-    let username_path = username ? username.replace(/[^a-zA-Z0-9]/g, "") : "";
-    if (!username_path) {
-      username_path = "defaultUser"; // 如果用户名无效，设置默认用户名
-    }
-
     wx.showLoading({
       title: "上传中...",
     });
 
-    // 使用用户名和时间戳生成唯一文件名
-    const timestamp = Date.now(); // 当前时间戳
-    const cloudPath = `videos/${username_path}-${timestamp}.mp4`;
     let returnId = -1;
-
     try {
+      const disabledSide = await this.chooseSide();
+      const selfish = await this.chooseAngle();
+
+      const app = getApp(); // 获取全局应用实例
+      const username = app.globalData.username;
+  
+      // 使用用户名和时间戳生成唯一文件名
+      let username_path = username ? username.replace(/[^a-zA-Z0-9]/g, "") : "";
+      if (!username_path) {
+        username_path = "defaultUser"; // 如果用户名无效，设置默认用户名
+      }
+      const timestamp = Date.now(); // 当前时间戳
+      const cloudPath = `videos/${username_path}-${timestamp}.mp4`;
+
       // 上传视频到云存储
       const fileID = await new Promise((resolve, reject) => {
         wx.cloud.uploadFile({
@@ -139,6 +140,8 @@ Page({
         data: {
           name: username, // 用户名
           fileID: fileID, // 上传视频的 fileID
+          disabledSide: disabledSide,
+          selfish: selfish
         },
       });
 
@@ -186,6 +189,34 @@ Page({
         }
       }, 2000);
     }
+  },
+
+  async chooseSide() {
+    return new Promise(resolve => {
+      wx.showModal({
+        title: '请选择',
+        content: '您的面瘫侧是',
+        cancelText: "左侧",
+        confirmText: "右侧",
+        success: res => {
+          resolve(res.confirm ? "right" : "left");
+        }
+      });
+    });
+  },
+
+  async chooseAngle() {
+    return new Promise(resolve => {
+      wx.showModal({
+        title: '请选择',
+        content: '您的拍摄角度是',
+        cancelText: "自拍",
+        confirmText: "他人拍摄",
+        success: res => {
+          resolve(res.confirm ? 0 : 1);
+        }
+      });
+    });
   },
 
   bindViewNotice() {

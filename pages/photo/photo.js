@@ -51,7 +51,7 @@ Page({
     const { photoPath } = this.data;
 
     // 校验是否所有字段都有值
-    const missingFields = Object.keys(photoPath).filter((key) => !photoPath[key]);
+    const missingFields = Object.keys(photoPath).filter(key => !photoPath[key]);
     if (missingFields.length > 0) {
       wx.showToast({
         title: '请上传所有图片',
@@ -60,96 +60,119 @@ Page({
       return;
     }
 
-    // 上传所有照片
-    const app = getApp();
-    // 从全局数据中获取 username
-    const username = app.globalData.username;
-    let username_path = username.replace(/[^a-zA-Z0-9]/g, "");
-    if (!username_path) {
-      username_path = "defaultUser"; // 设置默认用户名
-    }
-    const suffix = username_path + Date.now();
-
-    const fileID = {};
-    let returnId = -1;
+    wx.showLoading({
+      title: '上传中...',
+      mask: true
+    });
 
     try {
-      // 上传任务并行处理
-      const uploadTasks = Object.entries(photoPath).map(([state, path]) => {
-        return wx.cloud.uploadFile({
-          cloudPath: `${state}_${suffix}.jpg`, // 云存储路径
-          filePath: path,
-          config: {
-            'env': 'prod-4ggnzg0z43d1ab28' // 云开发环境配置
-          }
-        }).then(res => {
-          console.log(`${state} 上传成功，文件 ID:`, res.fileID);
-          // 更新 fileID 对象
-          fileID[state] = res.fileID;
-          return { state, fileID: res.fileID }; // 返回成功结果
-        }).catch(err => {
-          console.error(`${state} 上传失败:`, err);
-          return { state, error: err }; // 返回失败结果
-        });
-      });
+      const disabledSide = await this.chooseSide();
+      const selfish = await this.chooseAngle();
 
-      // 等待所有上传任务完成
-      const results = await Promise.all(uploadTasks);
-
-      // 检查是否有上传失败的照片
-      const failed = results.filter(item => item.error);
-      if (failed.length > 0) {
-        wx.hideLoading(); // 隐藏加载提示
-        wx.showToast({
-          title: `部分上传失败: ${failed.map(f => f.state).join(', ')}`,
-          icon: 'none'
-        });
-        return; // 不再继续调用后端接口
-      }
-
-      wx.showToast({
-        title: '所有照片上传成功',
-        icon: 'success'
-      });
+      // 上传所有照片
+      const fileIDs = await this.uploadPhotos(photoPath);
+      if (!fileIDs) return; // 处理上传失败
 
       // 所有照片上传成功后，调用后端接口
-      const response = await wx.cloud.callContainer({
-        "config": {
-          "env": "prod-4ggnzg0z43d1ab28"
-        },
-        "path": "/api/detect/detect",
-        "header": {
-          "X-WX-SERVICE": "django-5dw4",
-          "content-type": "application/json"
-        },
-        "method": "POST",
-        "data": {
-          "name": username,
-          "fileID": fileID // 上传完成的 fileID 对象
-        }
-      });
-
-      console.log('后端接口响应:', response);
-      returnId = response.data.id;
-      wx.showToast({
-        title: '后端处理成功',
-        icon: 'success'
-      });
+      await this.callBackendApi(fileIDs, disabledSide, selfish);
     } catch (err) {
-      console.error('调用后端接口失败:', err);
+      console.error('上传或处理失败:', err);
       wx.showToast({
-        title: '后端处理失败',
+        title: '处理失败',
         icon: 'none'
       });
     } finally {
-      wx.hideLoading(); // 无论成功或失败，隐藏加载提示
-      if (returnId == -1) {
-        wx.navigateBack();
-      } else {
-        wx.navigateTo({
-          url: `../rating/rating?id=${returnId}`
-        });
-      }
+      wx.hideLoading();
     }
   },
+
+  async chooseSide() {
+    return new Promise(resolve => {
+      wx.showModal({
+        title: '请选择',
+        content: '您的面瘫侧是',
+        cancelText: "左侧",
+        confirmText: "右侧",
+        success: res => {
+          resolve(res.confirm ? "right" : "left");
+        }
+      });
+    });
+  },
+
+  async chooseAngle() {
+    return new Promise(resolve => {
+      wx.showModal({
+        title: '请选择',
+        content: '您的拍摄角度是',
+        cancelText: "自拍",
+        confirmText: "他人拍摄",
+        success: res => {
+          resolve(res.confirm ? 0 : 1);
+        }
+      });
+    });
+  },
+
+  async uploadPhotos(photoPath) {
+    const app = getApp();
+    const username = app.globalData.username || "defaultUser";
+    const suffix = username.replace(/[^a-zA-Z0-9]/g, "") + Date.now();
+
+    try {
+      const uploadTasks = Object.entries(photoPath).map(([state, path]) => {
+        return wx.cloud.uploadFile({
+          cloudPath: `${state}_${suffix}.jpg`,
+          filePath: path,
+          config: { 'env': 'prod-4ggnzg0z43d1ab28' }
+        });
+      });
+
+      const results = await Promise.all(uploadTasks);
+      const fileIDs = results.reduce((acc, res, index) => {
+        acc[Object.keys(photoPath)[index]] = res.fileID;
+        return acc;
+      }, {});
+
+      wx.showToast({ title: '照片上传成功', icon: 'success' });
+      return fileIDs;
+    } catch (err) {
+      wx.showToast({ title: '部分上传失败', icon: 'none' });
+      console.error("上传错误:", err);
+      return null;
+    }
+  },
+
+  async callBackendApi(fileIDs, disabledSide, selfish) {
+    const app = getApp();
+    const username = app.globalData.username;
+    const response = await wx.cloud.callContainer({
+      "config": { "env": "prod-4ggnzg0z43d1ab28" },
+      "path": "/api/detect/detect",
+      "header": {
+        "X-WX-SERVICE": "django-5dw4",
+        "content-type": "application/json"
+      },
+      "method": "POST",
+      "data": {
+        "name": username,
+        "fileID": fileIDs,
+        "disabledSide": disabledSide,
+        "selfish": selfish
+      }
+    });
+
+    console.log('后端接口响应:', response);
+    if (response.data.id === -1) {
+      wx.navigateBack();
+    } else {
+      wx.navigateTo({
+        url: `../rating/rating?id=${response.data.id}`
+      });
+    }
+    wx.showToast({
+      title: '后端处理成功',
+      icon: 'success'
+    });
+  }
 });

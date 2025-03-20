@@ -178,7 +178,7 @@ Page({
 
   // 上传视频
   async uploadVideo() {
-    const { videoSrc } = this.data;
+    const { videoSrc, devicePosition } = this.data;
 
     if (!videoSrc) {
       wx.showToast({
@@ -188,23 +188,25 @@ Page({
       return;
     }
 
-    const app = getApp(); // 获取全局应用实例
-    const username = app.globalData.username;
-    let username_path = username.replace(/[^a-zA-Z0-9]/g, "");
-    if (!username_path) {
-      username_path = "defaultUser"; // 设置默认用户名
-    }
-
     wx.showLoading({
       title: "上传中...",
     });
 
-    // 使用用户名 + 时间戳命名文件
-    const timestamp = Date.now(); // 当前时间戳
-    const cloudPath = `videos/${username_path}-${timestamp}.mp4`;
     let returnId = -1;
-
     try {
+      const disabledSide = await this.chooseSide();
+      const selfish = devicePosition === "front" ? 1 : 0;
+
+      const app = getApp(); // 获取全局应用实例
+      const username = app.globalData.username;
+      let username_path = username.replace(/[^a-zA-Z0-9]/g, "");
+      if (!username_path) {
+        username_path = "defaultUser"; // 设置默认用户名
+      }
+      // 使用用户名 + 时间戳命名文件
+      const timestamp = Date.now(); // 当前时间戳
+      const cloudPath = `videos/${username_path}-${timestamp}.mp4`;
+
       // 将 wx.cloud.uploadFile 封装成 Promise
       const fileID = await new Promise((resolve, reject) => {
         wx.cloud.uploadFile({
@@ -241,6 +243,8 @@ Page({
         data: {
           name: username,
           fileID: fileID,
+          disabledSide: disabledSide,
+          selfish: selfish
         },
       });
 
@@ -275,6 +279,20 @@ Page({
         }
       }, 1000);
     }
+  },
+
+  async chooseSide() {
+    return new Promise(resolve => {
+      wx.showModal({
+        title: '请选择',
+        content: '您的面瘫侧是',
+        cancelText: "左侧",
+        confirmText: "右侧",
+        success: res => {
+          resolve(res.confirm ? "right" : "left");
+        }
+      });
+    });
   },
 
   // 更新文字提示和语音播报
